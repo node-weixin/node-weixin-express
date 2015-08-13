@@ -1,0 +1,46 @@
+{
+  "name": "node-weixin-express",
+  "version": "0.0.0",
+  "description": "A deployable express based weixin server",
+  "author": {
+    "name": "JSSDKCN",
+    "email": "calidion@gmail.com",
+    "url": "blog.3gcnbeta.com"
+  },
+  "repository": "JSSDKCN/node-weixin-express",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "cli.js",
+    "lib",
+    "config"
+  ],
+  "keywords": [
+    "node-weixin-express",
+    "weixin",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.13.3",
+    "meow": "^3.1.0",
+    "node-weixin-auth": "0.0.4",
+    "supertest": "^1.0.1",
+    "web-errors": "^0.1.5"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-cli": "^1.12.0",
+    "jshint-stylish": "^1.0.1",
+    "load-grunt-tasks": "^3.1.0",
+    "time-grunt": "^1.1.0"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "bin": {
+    "node-weixin-express": "cli.js"
+  }
+}
