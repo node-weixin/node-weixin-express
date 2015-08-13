@@ -12,9 +12,8 @@ module.exports = function (values, flags) {
   }
 
   var server = app.listen(port, function () {
-    var host = server.address().address;
     var port = server.address().port;
-    console.log('Weixin Express Server Running at http://%s:%s', host, port);
+    console.log('Weixin Express Server Running on Port %s', port);
   });
   return server;
 };

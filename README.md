@@ -12,10 +12,11 @@ $ npm install --save node-weixin-express
 
 ## Usage
 
-```js
-var nodeWeixinExpress = require('node-weixin-express');
+不需要再写代码，直接通过命令执行。
+指定你的服务器Token和端口port(默认:3333)
 
-nodeWeixinExpress('Rainbow');
+```bash
+node cli.js --token AUTH_YOUR_TOKEN --port 3333
 ```
 
 ```sh
