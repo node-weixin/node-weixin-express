@@ -1,3 +1,8 @@
 module.exports = {
-  '/weixin/ack': require('./lib/auth').ack
+  '/weixin/ack': function(token) {
+    var auth = require('./lib/auth');
+    return function(req, res) {
+      auth.ack(token, req, res);
+    };
+  }
 };

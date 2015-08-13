@@ -23,7 +23,7 @@
   "dependencies": {
     "express": "^4.13.3",
     "meow": "^3.1.0",
-    "node-weixin-auth": "0.0.4",
+    "node-weixin-auth": "0.0.5",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
   },
