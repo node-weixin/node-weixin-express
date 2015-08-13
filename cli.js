@@ -6,10 +6,10 @@ var nodeWeixinExpress = require('./');
 var cli = meow({
   help: [
     'Usage',
-    '  node-weixin-express [--port port] [--conf conf]',
+    '  node-weixin-express [--port port] [--token token]',
     '',
     'Example',
-    '  node-weixin-express --port 10000 --conf a.conf'
+    '  node-weixin-express --port 10000 --token aasdsfsdfsf'
   ].join('\n')
 });
 
