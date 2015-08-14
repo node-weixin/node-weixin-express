@@ -4,7 +4,7 @@ module.exports = function (values, flags) {
   var secret = flags['secret'] || process.env.APP_SECRET || 'SECRET';
   var token = flags['token'] || process.env.APP_TOKEN || 'TOKEN';
   var host = flags['host'] || process.env.HOST || 'http://localhost';
-  var redirect = flags['redirect'] || process.env.REDIRECT || 'http://localhost/redirect';
+  var redirect = flags['redirect'] || process.env.REDIRECT || null;
   var app = {
     id: id,
     secret: secret,
