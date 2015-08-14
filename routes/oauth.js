@@ -33,7 +33,7 @@ module.exports = {
         weixin.openid = json.openid;
         weixin.accessToken = json.access_token;
         weixin.refreshToken = json.refresh_token;
-        req.sesssion.weixin = weixin;
+        req.session.weixin = weixin;
         if (cb) {
           cb(weixin);
         }

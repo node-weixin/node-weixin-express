@@ -17,11 +17,14 @@ module.exports = function (values, flags) {
 
   var express = require('express');
   var bodyParser = require('body-parser');
+  var session = require('express-session')
 
   var http = express();
 
   http.use(bodyParser.urlencoded({ extended: false }));
   http.use(bodyParser.json());
+  http.set('trust proxy', 1); // trust first proxy
+  http.use(session({ secret: 'mysecret', cookie: { maxAge: 60000 }}));
 
   //Init auth
   var auths = require('./routes/auth');
