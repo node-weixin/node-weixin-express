@@ -34,14 +34,14 @@ module.exports = {
         weixin.refreshToken = json.refresh_token;
         req.session.weixin = weixin;
         if (cb) {
-          cb(res, weixin);
+          cb(req, res, weixin);
         }
       });
     };
   },
   '/weixin/oauth/redirect':function(app, urls, cb) {
     return function(req, res) {
-      res.write('Oauth Success! Please specify your url with  --redirect directive!');
+      res.send('Oauth Success! Please specify your url with  --redirect directive!');
     }
   }
 };
