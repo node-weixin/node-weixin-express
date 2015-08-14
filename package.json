@@ -12,9 +12,9 @@
   "files": [
     "index.js",
     "cli.js",
-    "routes.js",
     "lib",
-    "routes"
+    "routes",
+    "htmls"
   ],
   "keywords": [
     "node-weixin-express",

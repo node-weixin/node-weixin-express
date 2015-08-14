@@ -1,3 +1,6 @@
+var fs = require('fs');
+var path = require('path');
+
 module.exports = {
   '/weixin/oauth/access': function(app, urls) {
     var oauth = require('../lib/oauth');
@@ -41,7 +44,10 @@ module.exports = {
   },
   '/weixin/oauth/redirect':function(app, urls, cb) {
     return function(req, res) {
-      res.send('Oauth Success! Please specify your url with  --redirect directive!');
+      var data = fs.readFileSync(path.resolve(__dirname, '../htmls/oauth-redirect.html'));
+      //res.send('Oauth Success! Please specify your url with  --redirect directive!');
+      res.type("html")
+      res.send(data);
     }
   }
 };
