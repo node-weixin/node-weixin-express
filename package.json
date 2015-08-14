@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A deployable express based weixin server",
   "author": {
     "name": "JSSDKCN",
@@ -13,7 +13,8 @@
     "index.js",
     "cli.js",
     "routes.js",
-    "lib"
+    "lib",
+    "routes"
   ],
   "keywords": [
     "node-weixin-express",
@@ -21,9 +22,11 @@
     "express"
   ],
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "meow": "^3.1.0",
     "node-weixin-auth": "0.0.5",
+    "node-weixin-oauth": "0.0.7",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
   },
@@ -35,6 +38,7 @@
     "grunt-mocha-cli": "^1.12.0",
     "jshint-stylish": "^1.0.1",
     "load-grunt-tasks": "^3.1.0",
+    "nock": "^2.10.0",
     "time-grunt": "^1.1.0"
   },
   "scripts": {

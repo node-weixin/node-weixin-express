@@ -12,17 +12,36 @@ $ npm install --g node-weixin-express
 
 ## Usage
 
-不需要再写代码，直接通过命令执行。
-指定你的服务器Token和端口port(默认:3333)
+1.查看命令
+
+```sh
+$ node-weixin-express --help
+```
+
+不需要再写代码，可以直接通过命令执行。
+
+端口port默认是3333,需要配置HTTP代理才能更好的工作
+  >如果没有代理服务器，请将port指定为80，以防微信验证无法通过。
+
+
+1. 作为微信验证服务器
+
 
 ```sh
 weixin --token AUTH_YOUR_TOKEN --port 3333
+forever start $(which weixin) --token AUTH_YOUR_TOKEN --port 3333
 ```
 
+启动后微信返回的验证需要指定到：http://YOUR_DOMAIN/weixin/auth/ack
+
+
+2.作为oauth服务器
+
 ```sh
-$ npm install --global node-weixin-express
-$ node-weixin-express --help
+weixin --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host]
+forever start $(which weixin) --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host]
 ```
+
 
 
 ## License
