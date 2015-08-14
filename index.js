@@ -4,6 +4,7 @@ module.exports = function (values, flags) {
   var secret = flags['secret'] || process.env.APP_SECRET || 'SECRET';
   var token = flags['token'] || process.env.APP_TOKEN || 'TOKEN';
   var host = flags['host'] || process.env.HOST || 'http://localhost';
+  var redirect = flags['redirect'] || process.env.REDIRECT || 'http://localhost/redirect';
   var app = {
     id: id,
     secret: secret,
@@ -12,12 +13,13 @@ module.exports = function (values, flags) {
 
   var urls = {
     access: host + '/weixin/oauth/access',
-    success: host + '/weixin/oauth/success'
+    success: host + '/weixin/oauth/success',
+    redirect: redirect || host + '/weixin/oauth/redirect'
   };
 
   var express = require('express');
   var bodyParser = require('body-parser');
-  var session = require('express-session')
+  var session = require('express-session');
 
   var http = express();
 
@@ -35,8 +37,9 @@ module.exports = function (values, flags) {
 
   //Init oauth
   var oauths = require('./routes/oauth');
-  function onOauthSuccess() {
-    console.log("success fully on oauth");
+  function onOauthSuccess(req, res) {
+    //Redirect to user defined page.
+    res.redirect(urls.redirect);
   }
 
   for(var k in oauths) {
