@@ -38,9 +38,18 @@ forever start $(which weixin) --token AUTH_YOUR_TOKEN --port 3333
 2.作为oauth服务器
 
 ```sh
-weixin --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host]
-forever start $(which weixin) --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host]
+weixin --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host] [--redirect redirect]
+forever start $(which weixin) --port 3333 [--port port] [--token token] [--id id] [--secret secret] [--host host] [--redirect redirect]
 ```
+
+注意: host 要是完整的URL,比如： http://weixin.domain.com
+
+启动后让微信访问：http://yourdomain.com/weixin/oauth/access
+
+微信就会自动验证，只要你的验证正确，在没有配置redirect参数时，会出现如下结果：
+
+![Oauth-Success-Image](/images/oauth-success.jpg)
+
 
 
 
