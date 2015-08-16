@@ -7,18 +7,31 @@ var assert = require('assert');
 
 var id = process.env.APP_ID;
 var secret = process.env.APP_SECRET;
-
 var token = process.env.APP_TOKEN;
+var jsurl = process.env.JSSDK_URL;
+var host = process.env.HOST;
 
-var server = nodeWeixinExpress({},
+var expressConf = {
+  id: id,
+  secret: secret,
+  token: token,
+  'jssdk-url': jsurl,
+  host: host
+};
 
-);
+console.log(expressConf);
+
+var server = nodeWeixinExpress({}, expressConf);
+
+var port = 3334;
+
+server.listen(port, function () {
+  console.log('Weixin Express Server Running on Port %s', port);
+});
 
 describe('node-weixin-express node module', function (done) {
   it('should be able to ack server auth', function () {
     var nodeWeixinAuth = require('node-weixin-auth');
-    var token = 'sdfsdf';
-    var server = nodeWeixinExpress({}, {token: token});
     var time = new Date().getTime();
     var nonce = 'nonce';
     var signature = nodeWeixinAuth.generateSignature(token, time, nonce);
@@ -38,8 +51,6 @@ describe('node-weixin-express node module', function (done) {
   });
 
   it('should be able to ack server auth due to mismatch signature', function () {
-    var token = 'sdfsdf';
-    var server = nodeWeixinExpress({}, {token: token});
     var time = new Date().getTime();
     var nonce = 'nonce';
     var echostr = 'Hello world!';
@@ -59,8 +70,6 @@ describe('node-weixin-express node module', function (done) {
 
   it('should not be able to ack server auth due to input invalid', function () {
     var nodeWeixinAuth = require('node-weixin-auth');
-    var token = 'sdfsdf';
-    var server = nodeWeixinExpress({}, {token: token});
     var time = new Date().getTime();
     var nonce = 'nonce';
     var signature = nodeWeixinAuth.generateSignature(token, time, nonce);
@@ -82,8 +91,10 @@ describe('node-weixin-express node module', function (done) {
     var token = 'sdfsdf';
     var id = 'sofdsofd';
     var secret = 'sosos';
-    var server = nodeWeixinExpress({}, {token: token, id: id, secret: secret,
-    host: 'http://localhost'});
+    var server = nodeWeixinExpress({}, {
+      token: token, id: id, secret: secret,
+      host: 'http://localhost'
+    });
     request(server)
       .get('/weixin/oauth/access')
       .expect(302)
@@ -95,92 +106,6 @@ describe('node-weixin-express node module', function (done) {
         } else {
           throw err;
         }
-        done();
-      });
-  });
-
-  it('should be able to handler oauth success', function () {
-    var app = {
-      id: 'id',
-      secret: 'secret',
-      token: 'token'
-    };
-    //Simulation for Weixin server response
-    var code = 'aaa';
-    var nock = require('nock');
-    var params = {
-      appid: app.id,
-      secret: app.secret,
-      grant_type: 'authorization_code',
-      code: code,
-      access_token: app.token
-    };
-    var url = 'https://api.weixin.qq.com';
-    var reply = {
-      openid: 'sofdso',
-      access_token: 'sossoso',
-      refresh_token: 'refresh_token'
-    };
-
-    nock(url)
-      .post('/sns/oauth2/access_token')
-      .query(params)
-      .reply(200, reply);
-
-    var server = nodeWeixinExpress({}, {token: app.token, id: app.id, secret: app.secret,
-      host: 'http://localhost'});
-
-    request(server)
-      .post('/weixin/oauth/success')
-      .send({
-        code: code,
-        state: 'state'
-      })
-      .expect(200)
-      .end(function () {
-        done();
-      });
-  });
-
-  it('should be able to get jssdk configure', function () {
-    var app = {
-      id: 'id',
-      secret: 'secret',
-      token: 'token'
-    };
-    //Simulation for Weixin server response
-    var code = 'aaa';
-    var nock = require('nock');
-    var params = {
-      appid: app.id,
-      secret: app.secret,
-      grant_type: 'authorization_code',
-      code: code,
-      access_token: app.token
-    };
-    var url = 'https://api.weixin.qq.com';
-    var reply = {
-      openid: 'sofdso',
-      access_token: 'sossoso',
-      refresh_token: 'refresh_token'
-    };
-
-    nock(url)
-      .post('/sns/oauth2/access_token')
-      .query(params)
-      .reply(200, reply);
-
-    var server = nodeWeixinExpress({}, {token: app.token, id: app.id, secret: app.secret,
-      host: 'http://localhost'});
-
-    request(server)
-      .post('/weixin/oauth/success')
-      .send({
-        code: code,
-        state: 'state'
-      })
-      .expect(200)
-      .end(function () {
         done();
       });
   });
