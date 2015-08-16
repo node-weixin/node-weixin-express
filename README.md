@@ -82,6 +82,8 @@ forever start $(which weixin) --port 333 --id id --secret secret --token token -
 启动后让微信访问：http://yourdomain.com/weixin/jssdk/main
 查看功能配置情况。
 
+<img src="/images/jssdk-success.jpg" height="400"/>
+
 
 
 ## License
