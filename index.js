@@ -51,9 +51,6 @@ function initJSSDK(http, app, url) {
 }
 
 module.exports = function (values, flags) {
-
-console.log(flags);
-
   //Getting data from cli
   var id = flags['id'] || process.env.APP_ID || 'ID';
   var secret = flags['secret'] || process.env.APP_SECRET || 'SECRET';
@@ -62,8 +59,6 @@ console.log(flags);
   var redirect = flags['redirect'] || process.env.REDIRECT || null;
 
   var jsurl = flags['jssdkUrl'] || process.env.JSSDK_URL || 'http://localhost';
-  console.log(jsurl);
-
 
 
   //Init configuration
