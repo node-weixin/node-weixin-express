@@ -52,7 +52,7 @@ function initJSSDK(http, app, url) {
 
 module.exports = function (values, flags) {
 
-
+console.log(flags);
 
   //Getting data from cli
   var id = flags['id'] || process.env.APP_ID || 'ID';
@@ -61,7 +61,8 @@ module.exports = function (values, flags) {
   var host = flags['host'] || process.env.HOST || 'http://localhost';
   var redirect = flags['redirect'] || process.env.REDIRECT || null;
 
-  var jsurl = flags['jssdk-url'] || process.env.JSSDK_URL || 'http://localhost';
+  var jsurl = flags['jssdkUrl'] || process.env.JSSDK_URL || 'http://localhost';
+  console.log(jsurl);
 
 
 
