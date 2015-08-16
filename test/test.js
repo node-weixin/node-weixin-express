@@ -18,16 +18,7 @@ var expressConf = {
   'jssdk-url': jsurl,
   host: host
 };
-
-console.log(expressConf);
-
 var server = nodeWeixinExpress({}, expressConf);
-
-var port = 3334;
-
-server.listen(port, function () {
-  console.log('Weixin Express Server Running on Port %s', port);
-});
 
 describe('node-weixin-express node module', function (done) {
   it('should be able to ack server auth', function () {
