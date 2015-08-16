@@ -26,6 +26,7 @@ $ node-weixin-express --help
 
 ###参数说明：
 
+--port port         //服务器侦听的端口
 --id id             //APP ID
 --secret secret     //APP SECRET
 --token token       //APP TOKEN 自已定义的
@@ -34,8 +35,17 @@ $ node-weixin-express --help
 --redirect redirect //Oauth成功后的返回URL
 
 
-
 ###运行说明
+
+普通运行命令
+```sh
+weixin --port port --id id 
+```
+
+作为永久服务器运行
+```sh
+forever start $(which weixin) --port port --id id 
+```
 
 1. 作为微信验证服务器
 
@@ -60,12 +70,13 @@ forever start $(which weixin) --port 3333 [--port port] [--token token] [--id id
 
 微信就会自动验证，只要你的验证正确，在没有配置redirect参数时，会出现如下结果：
 
-![Oauth-Success-Image](/images/oauth-success.jpg =40x)
+<img src="/images/oauth-success.jpg" height="400"/>
 
 3.作为JSSDK服务器
 
 ```sh
---id wx0201661ce8fb3e11 --secret 483585a84eacd76693855485cb88dc8a --token c9be82f386afdb214b0285e96cb9cb82 --jssdk-url http://wx.t1bao.com/weixin/jssdk/main
+weixin --id wx0201661ce8fb3e11 --secret 483585a84eacd76693855485cb88dc8a --token c9be82f386afdb214b0285e96cb9cb82 --jssdk-url http://wx.t1bao.com/weixin/jssdk/main
+forever start $(which weixin) --id wx0201661ce8fb3e11 --secret 483585a84eacd76693855485cb88dc8a --token c9be82f386afdb214b0285e96cb9cb82 --jssdk-url http://wx.t1bao.com/weixin/jssdk/main
 ```
 
 启动后让微信访问：http://yourdomain.com/weixin/jssdk/main
