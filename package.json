@@ -23,10 +23,13 @@
   ],
   "dependencies": {
     "body-parser": "^1.13.3",
+    "ejs": "^2.3.3",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
+    "lodash": "^3.10.1",
     "meow": "^3.1.0",
     "node-weixin-auth": "0.0.5",
+    "node-weixin-jssdk": "0.0.2",
     "node-weixin-oauth": "0.0.7",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
