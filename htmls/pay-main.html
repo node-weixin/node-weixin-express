@@ -46,16 +46,16 @@
         function (res) {
           WeixinJSBridge.log(res.err_msg);
         }
-        );
+      );
     }
 
-function onBridgeReady() {
-  wxPayConfig(new Date().getTime(), 1, '测试支付', function (config) {
-      wxPay(config.data);
+    function onBridgeReady() {
+      wxPayConfig(new Date().getTime(), 1, '测试支付', function (config) {
+        wxPay(config.data);
       });
-}
-$(document).ready(function() {
-    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }
+    $(document).ready(function () {
+      document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
     });
   </script>
 </div>

@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A deployable express based weixin server",
   "author": {
     "name": "JSSDKCN",

@@ -2,9 +2,9 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = {
-  '/weixin/oauth/access': function(app, urls) {
+  '/weixin/oauth/access': function (app, urls) {
     var oauth = require('../lib/oauth');
-    return function(req, res) {
+    return function (req, res) {
       req.session.referer = req.headers['referer'];
       var state = 'STATE';
 
@@ -16,9 +16,9 @@ module.exports = {
       oauth.access(req, res);
     };
   },
-  '/weixin/oauth/success': function(app, urls, cb) {
+  '/weixin/oauth/success': function (app, urls, cb) {
     var oauth = require('../lib/oauth');
-    return function(req, res) {
+    return function (req, res) {
 
       var code = req.param('code');
       if (!code) {
@@ -27,7 +27,7 @@ module.exports = {
       }
       oauth.init(app, urls);
       oauth.setSuccess(code)
-      oauth.success(req, res, function(error, json) {
+      oauth.success(req, res, function (error, json) {
         if (error) {
           res.redirect(urls.access);
           return;
@@ -47,8 +47,8 @@ module.exports = {
       });
     };
   },
-  '/weixin/oauth/redirect':function(app, urls, cb) {
-    return function(req, res) {
+  '/weixin/oauth/redirect': function (app, urls, cb) {
+    return function (req, res) {
       var data = fs.readFileSync(path.resolve(__dirname, '../htmls/oauth-redirect.html'));
       res.type("html")
       res.send(data);

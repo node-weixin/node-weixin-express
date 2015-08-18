@@ -9,7 +9,7 @@ module.exports = {
     };
   },
   '/weixin/jssdk/main': function(app) {
-    return function(req, res) {
+    return function (req, res) {
       var data = fs.readFileSync(path.resolve(__dirname, '../htmls/jssdk-main.html'));
       res.type("html")
       res.send(data);
