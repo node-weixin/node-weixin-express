@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width">
+  <title>JSSDKMainPage</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+<div>
+  <div class="container">
+    <h1>Weixin Express for Web Pay</h1>
+  </div>
+
+
+  <script>
+
+    //从服务器获取配置好的数据
+    function wxPayConfig(ajax, no, fee, desc, cb) {
+      ajax({
+        url: '/weixin/pay/init',
+        data: {
+          no: no,
+          fee: fee,
+          desc: desc
+        }
+      }).success(function (config) {
+        cb(config);
+      });
+    }
+
+    //调用微信JS api 支付
+    function wxPay(config) {
+      WeixinJSBridge.invoke(
+        'getBrandWCPayRequest',
+        config,
+        function (res) {
+          WeixinJSBridge.log(res.err_msg);
+          alert(res.err_code + res.err_desc + res.err_msg);
+        }
+      );
+    }
+    $(document).ready(function () {
+      var url = "/weixin/jssdk/config";
+      $.ajax({
+        url: url
+      }).success(function (json) {
+        alert(JSON.stringify(json.data));
+        var data = json.data;
+        var config = {};
+        for (var k in json.data) {
+          config[k] = json.data[k];
+        }
+
+        config.jsApiList = [
+          'checkJsApi',
+          'scanQRCode'
+        ];
+        config.timestamp = parseInt(config.timestamp);
+        wx.config(config);
+        wx.ready(function () {
+          alert("微信jssdk配置成功!");
+          wxPayConfig($.ajx, new Date().getTime(), 1, '测试支付', function (config) {
+            wxPay(config);
+          });
+        });
+        wx.error(function (res) {
+          alert('微信JSSDK配置失败！');
+          alert(JSON.stringify(res));
+          alert(res.errMsg);
+        });
+      });
+    });
+
+  </script>
+</div>
+</body>
+</html>

@@ -3,6 +3,10 @@
 > A deployable express based weixin server
 
 
+## 反馈与帮助
+
+nodejs微信开发交流QQ群： 39287176
+
 ## Install
 
 ```sh
@@ -26,6 +30,7 @@ $ node-weixin-express --help
 
 ###参数说明：
 
+```sh
 --port port         //服务器侦听的端口
 --id id             //APP ID
 --secret secret     //APP SECRET
@@ -33,11 +38,12 @@ $ node-weixin-express --help
 --jssdk-url url     //使用JSSDK的URL地址
 --host oauthHost    //进行Oauth验证的主机域名
 --redirect redirect //Oauth成功后的返回URL
-
+```
 
 ###运行说明
 
-普通运行命令
+普通命令运行
+
 ```sh
 weixin --port port --id id 
 ```
@@ -84,16 +90,24 @@ forever start $(which weixin) --port 333 --id id --secret secret --token token -
 
 <img src="/images/jssdk-success.png" height="400"/>
 
+4.作为支付服务器
+
+```sh
+weixin  --port 3333 --token token --id id  --secret secret  --host host --jssdk-url url --merchant-id mid  --merchant-key mkey
+ --cert-file cert.p12 --cert-key ckey
+forever start $(which weixin)  --port 3333 --token token --id id  --secret secret  --host host --jssdk-url url --merchant-id mid  --merchant-key mkey
+ --cert-file cert.p12 --cert-key ckey
+```
 
 
 ## License
 
-MIT © [JSSDKCN](blog.3gcnbeta.com)
+MIT © [node-weixin](blog.3gcnbeta.com)
 
 
 [npm-image]: https://badge.fury.io/js/node-weixin-express.svg
 [npm-url]: https://npmjs.org/package/node-weixin-express
-[travis-image]: https://travis-ci.org/JSSDKCN/node-weixin-express.svg?branch=master
-[travis-url]: https://travis-ci.org/JSSDKCN/node-weixin-express
-[daviddm-image]: https://david-dm.org/JSSDKCN/node-weixin-express.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/JSSDKCN/node-weixin-express
+[travis-image]: https://travis-ci.org/node-weixin/node-weixin-express.svg?branch=master
+[travis-url]: https://travis-ci.org/node-weixin/node-weixin-express
+[daviddm-image]: https://david-dm.org/node-weixin/node-weixin-express.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/node-weixin/node-weixin-express

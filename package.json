@@ -33,7 +33,7 @@
     "node-weixin-config": "0.0.2",
     "node-weixin-jssdk": "0.0.3",
     "node-weixin-oauth": "0.0.7",
-    "node-weixin-pay": "0.0.3",
+    "node-weixin-pay": "0.0.6",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
   },

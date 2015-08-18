@@ -112,11 +112,10 @@ module.exports = function (values, flags) {
   var urls = {
     access: host + '/weixin/oauth/access',
     success: host + '/weixin/oauth/success',
-    redirect: redirect || host + '/weixin/oauth/redirect'
-  };
-
-  var payUrls = {
-    callback: payUrl
+    redirect: redirect || host + '/weixin/oauth/redirect',
+    pay: {
+      callback: payUrl
+    }
   };
 
 
@@ -146,7 +145,7 @@ module.exports = function (values, flags) {
           config.certificate.init(certificate.pkcs12, certificate.key);
           console.log('Certificate Initialized!');
           try {
-            initPay(http, app, merchant, certificate, payUrls);
+            initPay(http, app, merchant, certificate, urls);
             console.log('Weixin Pay Server Ready!');
           } catch(e) {
             console.log('Failed to init Weixin Pay');

@@ -5,6 +5,7 @@ module.exports = {
   '/weixin/oauth/access': function(app, urls) {
     var oauth = require('../lib/oauth');
     return function(req, res) {
+      req.session.referer = req.headers['referer'];
       var state = 'STATE';
 
       //0 表示 基本信息
@@ -36,6 +37,10 @@ module.exports = {
         weixin.accessToken = json.access_token;
         weixin.refreshToken = json.refresh_token;
         req.session.weixin = weixin;
+        if (req.session.referer) {
+          res.redirect(req.session.refer);
+          return;
+        }
         if (cb) {
           cb(req, res, weixin);
         }
@@ -45,7 +50,6 @@ module.exports = {
   '/weixin/oauth/redirect':function(app, urls, cb) {
     return function(req, res) {
       var data = fs.readFileSync(path.resolve(__dirname, '../htmls/oauth-redirect.html'));
-      //res.send('Oauth Success! Please specify your url with  --redirect directive!');
       res.type("html")
       res.send(data);
     }

@@ -1,8 +1,8 @@
 var pay = require('../lib/pay');
 
 module.exports = {
-  '/weixin/pay/init': function(app, merchant, certificate, urls, restApi) {
-    return function(req, res) {
+  '/weixin/pay/init': function (app, merchant, certificate, urls, restApi) {
+    return function (req, res) {
       var data = {};
       data.openid = req.session.weixin.openid;
       var ip = req.headers['x-forwarded-for']
@@ -11,7 +11,7 @@ module.exports = {
       var ips = ip.split(',');
       ip = ips[0];
       data.spbill_create_ip = ip;
-      data.notify_url = urls.callback;
+      data.notify_url = urls.pay.callback;
 
       var desc = req.param('desc');
       var no = req.param('no');
@@ -34,7 +34,7 @@ module.exports = {
       //data.attach = 'xxx'
       console.log(data);
       console.log('pay');
-      pay.api.order.unified(data, function (error, data) {
+      pay.unified(data, function (error, data) {
         console.log(error);
         console.log(data);
         if (error.code) {
@@ -42,17 +42,22 @@ module.exports = {
           return;
         }
         var prepayId = data.prepay_id;
-        var prepayData = weixin.api.jssdk.prepay(data.prepay_id);
+        pay.init(app, merchant, certificate, urls);
+        var prepayData = pay.prepay(prepayId);
         console.log(prepayData);
-        api(errors.SUCCESS, res, prepayData);
+        restApi(errors.SUCCESS, res, prepayData);
       });
     };
   },
-  '/weixin/pay/main': function(app, merchant, certificate, urls, restApi) {
-
-    return function(req, res) {
-
+  '/weixin/pay/main': function (app, merchant, certificate, urls, restApi) {
+    return function (req, res) {
+      if (req.session.weixin && req.session.weixin.openid) {
+        res.redirect(urls.access);
+        return;
+      }
+      var data = fs.readFileSync(path.resolve(__dirname, '../htmls/pay-main.html'));
+      res.type("html");
+      res.send(data);
     }
-
   }
 };
