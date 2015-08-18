@@ -34,20 +34,17 @@
           desc: desc
         }
       }).success(function (config) {
-        alert(JSON.stringify(config));
         cb(config);
       });
     }
 
     //调用微信JS api 支付
     function wxPay(config) {
-      alert(JSON.stringify(config));
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest',
         config,
         function (res) {
           WeixinJSBridge.log(res.err_msg);
-          alert(res.err_code + res.err_desc + res.err_msg);
         }
         );
     }

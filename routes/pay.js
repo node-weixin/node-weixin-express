@@ -8,8 +8,6 @@ module.exports = {
     pay.init(app, merchant, certificate, urls);
     return function (req, res) {
       if (!req.session.weixin || !req.session.weixin.openid) {
-        console.log("inside no session");
-        console.log(urls);
         res.setHeader('referer', urls.pay.callback);
         res.redirect(urls.access);
         return;
@@ -44,28 +42,20 @@ module.exports = {
       //data.goods_tag = 'xxx'
       //data.product_id = 'xxx'
       //data.attach = 'xxx'
-      console.log(data);
-      console.log('pay');
       pay.unified(data, function (error, data) {
-        console.log(error);
-        console.log(data);
         if (error) {
           restApi(res, errors.ERROR, error);
           return;
         }
         var prepayId = data.prepay_id;
         var prepayData = pay.prepay(prepayId, app, merchant);
-        console.log(prepayData);
         restApi(res, errors.SUCCESS, prepayData);
       });
     };
   },
   '/weixin/pay/main': function (app, merchant, certificate, urls, restApi) {
     return function (req, res) {
-      console.log(req.session.weixin);
       if (!req.session.weixin || !req.session.weixin.openid) {
-        console.log("inside no session");
-        console.log(urls);
         res.setHeader('referer', urls.pay.callback);
         res.redirect(urls.access);
         return;
