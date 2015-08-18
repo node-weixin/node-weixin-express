@@ -93,11 +93,23 @@ forever start $(which weixin) --port 333 --id id --secret secret --token token -
 4.作为支付服务器
 
 ```sh
-weixin  --port 3333 --token token --id id  --secret secret  --host host --jssdk-url url --merchant-id mid  --merchant-key mkey
- --cert-file cert.p12 --cert-key ckey
-forever start $(which weixin)  --port 3333 --token token --id id  --secret secret  --host host --jssdk-url url --merchant-id mid  --merchant-key mkey
- --cert-file cert.p12 --cert-key ckey
+weixin --port 333 --id appid --secret appsecret --token apptoken \
+ --jssdk-url http://wx.domain.com/weixin/jssdk/main --host http://wx.domain.com \
+ --merchant-id mid  --merchant-key mkey \
+ --cert-file apiclient_cert.p12 --cert-key ckey \
+ --pay-url http://wx.domian.com/weixin/pay \
+ --redirect http://wx.domain.com/weixin/pay/main
+ 
+forever start $(which weixin) --port 333 --id appid --secret appsecret --token apptoken \
+  --jssdk-url http://wx.domain.com/weixin/jssdk/main --host http://wx.domain.com \
+  --merchant-id mid  --merchant-key mid \
+  --cert-file apiclient_cert.p12 --cert-key ckey \
+  --pay-url http://wx.domian.com/weixin/pay \
+  --redirect http://wx.domain.com/weixin/pay/main
+  
 ```
+<img src="/images/pay-success.png" height="400"/>
+
 
 
 ## License
