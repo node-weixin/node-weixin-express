@@ -61,6 +61,8 @@ function initPay(http, app, merchant, certificate, urls) {
 module.exports = function (values, flags) {
   //Getting data from cli
 
+  console.log(flags);
+
   //Auth basic
   var id = flags['id'] || process.env.APP_ID || null;
   var secret = flags['secret'] || process.env.APP_SECRET || null;
@@ -94,11 +96,13 @@ module.exports = function (values, flags) {
     token: token
   };
 
+
   var merchant = {
     id: String(merchantId),
-    key: merchantKey
+    key: String(merchantKey)
   };
 
+  console.log(merchant);
   var path = require('path');
   var certificate = null;
   if (certPKCS12File) {

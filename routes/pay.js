@@ -1,8 +1,20 @@
 var pay = require('../lib/pay');
+var fs = require('fs');
+var path = require('path');
+var errors = require('web-errors').errors;
 
 module.exports = {
   '/weixin/pay/init': function (app, merchant, certificate, urls, restApi) {
+    pay.init(app, merchant, certificate, urls);
     return function (req, res) {
+      if (!req.session.weixin || !req.session.weixin.openid) {
+        console.log("inside no session");
+        console.log(urls);
+        res.setHeader('referer', urls.pay.callback);
+        res.redirect(urls.access);
+        return;
+      }
+
       var data = {};
       data.openid = req.session.weixin.openid;
       var ip = req.headers['x-forwarded-for']
@@ -37,21 +49,24 @@ module.exports = {
       pay.unified(data, function (error, data) {
         console.log(error);
         console.log(data);
-        if (error.code) {
-          api(errors.ERROR, res, error);
+        if (error) {
+          restApi(res, errors.ERROR, error);
           return;
         }
         var prepayId = data.prepay_id;
-        pay.init(app, merchant, certificate, urls);
-        var prepayData = pay.prepay(prepayId);
+        var prepayData = pay.prepay(prepayId, app, merchant);
         console.log(prepayData);
-        restApi(errors.SUCCESS, res, prepayData);
+        restApi(res, errors.SUCCESS, prepayData);
       });
     };
   },
   '/weixin/pay/main': function (app, merchant, certificate, urls, restApi) {
     return function (req, res) {
-      if (req.session.weixin && req.session.weixin.openid) {
+      console.log(req.session.weixin);
+      if (!req.session.weixin || !req.session.weixin.openid) {
+        console.log("inside no session");
+        console.log(urls);
+        res.setHeader('referer', urls.pay.callback);
         res.redirect(urls.access);
         return;
       }

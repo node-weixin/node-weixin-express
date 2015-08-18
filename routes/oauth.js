@@ -5,7 +5,10 @@ module.exports = {
   '/weixin/oauth/access': function(app, urls) {
     var oauth = require('../lib/oauth');
     return function(req, res) {
+      console.log(req.headers);
       req.session.referer = req.headers['referer'];
+      console.log("referer info:");
+      console.log(req.session.refer);
       var state = 'STATE';
 
       //0 表示 基本信息
@@ -37,6 +40,7 @@ module.exports = {
         weixin.accessToken = json.access_token;
         weixin.refreshToken = json.refresh_token;
         req.session.weixin = weixin;
+        console.log(req.session.weixin);
         if (req.session.referer) {
           res.redirect(req.session.refer);
           return;

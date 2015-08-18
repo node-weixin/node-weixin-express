@@ -25,8 +25,8 @@
   <script>
 
     //从服务器获取配置好的数据
-    function wxPayConfig(ajax, no, fee, desc, cb) {
-      ajax({
+    function wxPayConfig(no, fee, desc, cb) {
+      $.ajax({
         url: '/weixin/pay/init',
         data: {
           no: no,
@@ -34,12 +34,14 @@
           desc: desc
         }
       }).success(function (config) {
+        alert(JSON.stringify(config));
         cb(config);
       });
     }
 
     //调用微信JS api 支付
     function wxPay(config) {
+      alert(JSON.stringify(config));
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest',
         config,
@@ -47,40 +49,17 @@
           WeixinJSBridge.log(res.err_msg);
           alert(res.err_code + res.err_desc + res.err_msg);
         }
-      );
+        );
     }
-    $(document).ready(function () {
-      var url = "/weixin/jssdk/config";
-      $.ajax({
-        url: url
-      }).success(function (json) {
-        alert(JSON.stringify(json.data));
-        var data = json.data;
-        var config = {};
-        for (var k in json.data) {
-          config[k] = json.data[k];
-        }
 
-        config.jsApiList = [
-          'checkJsApi',
-          'scanQRCode'
-        ];
-        config.timestamp = parseInt(config.timestamp);
-        wx.config(config);
-        wx.ready(function () {
-          alert("微信jssdk配置成功!");
-          wxPayConfig($.ajx, new Date().getTime(), 1, '测试支付', function (config) {
-            wxPay(config);
-          });
-        });
-        wx.error(function (res) {
-          alert('微信JSSDK配置失败！');
-          alert(JSON.stringify(res));
-          alert(res.errMsg);
-        });
+function onBridgeReady() {
+  wxPayConfig(new Date().getTime(), 1, '测试支付', function (config) {
+      wxPay(config.data);
       });
+}
+$(document).ready(function() {
+    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
     });
-
   </script>
 </div>
 </body>
