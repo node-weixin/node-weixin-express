@@ -50,15 +50,41 @@ function initJSSDK(http, app, url) {
   }
 }
 
+function initPay(http, app, merchant, certificate, urls) {
+  var pay = require('./routes/pay');
+
+  for(var k in pay) {
+    http.all(k, pay[k](app, merchant, certificate, urls, restApi));
+  }
+}
+
 module.exports = function (values, flags) {
   //Getting data from cli
-  var id = flags['id'] || process.env.APP_ID || 'ID';
-  var secret = flags['secret'] || process.env.APP_SECRET || 'SECRET';
-  var token = flags['token'] || process.env.APP_TOKEN || 'TOKEN';
-  var host = flags['host'] || process.env.HOST || 'http://localhost';
+
+  //Auth basic
+  var id = flags['id'] || process.env.APP_ID || null;
+  var secret = flags['secret'] || process.env.APP_SECRET || null;
+  var token = flags['token'] || process.env.APP_TOKEN || null;
+
+  //Oauth
+  var host = flags['host'] || process.env.HOST || null;
   var redirect = flags['redirect'] || process.env.REDIRECT || null;
 
-  var jsurl = flags['jssdkUrl'] || process.env.JSSDK_URL || 'http://localhost';
+
+  //JSSDK
+  var jsurl = flags['jssdkUrl'] || process.env.JSSDK_URL || null;
+
+
+  //Merchant
+  var merchantId = flags['merchantId'] || process.env.MERCHANT_ID || null;
+  var merchantKey = flags['merchantKey'] || process.env.MERCHANT_KEY || null;
+
+  //Certficate
+  var certPKCS12File = flags['certFile'] || process.env.CERT_FILE || null;
+  var certKey = flags['certKey'] || process.env.CERT_KEY || null;
+
+
+  var payUrl = flags['payUrl'] || process.env.PAY_URL || null;
 
 
   //Init configuration
@@ -68,17 +94,77 @@ module.exports = function (values, flags) {
     token: token
   };
 
+  var merchant = {
+    id: String(merchantId),
+    key: merchantKey
+  };
+
+  var path = require('path');
+  var certificate = null;
+  if (certPKCS12File) {
+    certificate = {
+      pkcs12: path.resolve(certPKCS12File),
+      key: String(certKey)
+    };
+  }
+
+
   var urls = {
     access: host + '/weixin/oauth/access',
     success: host + '/weixin/oauth/success',
     redirect: redirect || host + '/weixin/oauth/redirect'
   };
 
+  var payUrls = {
+    callback: payUrl
+  };
+
+
+  var config = require("node-weixin-config");
 
   var http = readyExpress();
-  initAuth(http, token);
-  initOAuth(http, app, urls);
-  initJSSDK(http, app, jsurl);
+
+  if (token) {
+    initAuth(http, token);
+    console.log('Auth Ack Server Ready!');
+
+  }
+  try {
+    config.app.init(app);
+    if (jsurl) {
+      initJSSDK(http, app, jsurl);
+      console.log('JSSDK Server Ready!');
+    }
+    try {
+      config.urls.oauth.init(urls);
+      initOAuth(http, app, urls);
+      console.log('OAuth Server Ready!');
+      try {
+        config.merchant.init(merchant);
+        console.log('Merchant Initialized!');
+        try {
+          config.certificate.init(certificate.pkcs12, certificate.key);
+          console.log('Certificate Initialized!');
+          try {
+            initPay(http, app, merchant, certificate, payUrls);
+            console.log('Weixin Pay Server Ready!');
+          } catch(e) {
+            console.log('Failed to init Weixin Pay');
+            console.log(e);
+          }
+        } catch(e) {
+          console.log('Failed to init Weixin Pay Certificate');
+          console.log(e);
+        }
+      } catch(e) {
+        console.log('Failed to init Weixin Pay Merchant');
+      }
+    } catch(e) {
+      console.log('Failed to init Oauth');
+    }
+  } catch(e) {
+    console.log('Failed to init JSSDK And Oauth');
+  }
 
   return http;
 };
