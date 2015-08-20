@@ -106,7 +106,6 @@ module.exports = {
           config.merchant.init(merchant);
           console.log('Merchant Initialized!');
           try {
-            console.log(certificate);
             config.certificate.init(certificate.pkcs12, certificate.key);
             console.log('Certificate Initialized!');
             try {
