@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 var meow = require('meow');
-//var nodeWeixinExpress = require('./');
 
 var cli = meow({
   help: [

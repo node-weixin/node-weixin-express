@@ -1,14 +1,13 @@
 function restApi(res, error, data) {
-    var _ = require("lodash");
-    var json = _.assign({}, error);
-    if (data) {
-      json.data = data;
-    } else {
-      delete json.data;
-    }
-    res.json(json);
-  };
-
+  var _ = require("lodash");
+  var json = _.assign({}, error);
+  if (data) {
+    json.data = data;
+  } else {
+    delete json.data;
+  }
+  res.json(json);
+}
 
 
 module.exports = {
@@ -86,7 +85,7 @@ module.exports = {
     this.run(http, weixin, app, merchant, certificate, jsurl, urls);
     return http;
   },
-  run: function(http, weixin, app, merchant, certificate, jsurl, urls) {
+  run: function (http, weixin, app, merchant, certificate, jsurl, urls) {
     var config = require("node-weixin-config");
 
     if (app.token) {
