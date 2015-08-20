@@ -1,5 +1,4 @@
-module.exports = {
-  api: function (res, error, data) {
+function restApi(res, error, data) {
     var _ = require("lodash");
     var json = _.assign({}, error);
     if (data) {
@@ -8,8 +7,11 @@ module.exports = {
       delete json.data;
     }
     res.json(json);
-  },
+  };
 
+
+
+module.exports = {
   ready: function () {
     var express = require('express');
     var bodyParser = require('body-parser');
@@ -84,7 +86,7 @@ module.exports = {
     this.run(http, weixin, app, merchant, certificate, jsurl, urls);
     return http;
   },
-  run: function(http, weixin, app, merchant, certificat, jsurl, urls) {
+  run: function(http, weixin, app, merchant, certificate, jsurl, urls) {
     var config = require("node-weixin-config");
 
     if (app.token) {
@@ -94,7 +96,7 @@ module.exports = {
     try {
       config.app.init(app);
       if (jsurl) {
-        weixin.init.jssdk(http, app, jsurl);
+        weixin.init.jssdk(http, app, jsurl, restApi);
         console.log('JSSDK Server Ready!');
       }
       try {
@@ -105,10 +107,11 @@ module.exports = {
           config.merchant.init(merchant);
           console.log('Merchant Initialized!');
           try {
+            console.log(certificate);
             config.certificate.init(certificate.pkcs12, certificate.key);
             console.log('Certificate Initialized!');
             try {
-              weixin.init.pay(http, app, merchant, certificate, urls);
+              weixin.init.pay(http, app, merchant, certificate, urls, restApi);
               console.log('Weixin Pay Server Ready!');
             } catch (e) {
               console.log('Failed to init Weixin Pay');

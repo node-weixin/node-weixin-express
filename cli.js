@@ -24,8 +24,6 @@ var app = express.parse(cli.input, cli.flags, weixin);
 
 var port = cli.flags['port'] || process.env.PORT || 3333;
 
-console.log(express);
-
 app.listen(port, function () {
   console.log('Weixin Express Server Running on Port %s', port);
 });
