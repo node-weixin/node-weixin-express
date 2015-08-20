@@ -1,6 +1,9 @@
 'use strict';
-var nodeWeixinExpress = require('../');
+var weixin = require('../weixin');
+var express = require('../server/express');
+
 var errors = require('web-errors').errors;
+
 
 var request = require('supertest');
 var assert = require('assert');
@@ -18,7 +21,8 @@ var expressConf = {
   'jssdk-url': jsurl,
   host: host
 };
-var server = nodeWeixinExpress({}, expressConf);
+var server = express.parse({}, expressConf, weixin);
+
 
 describe('node-weixin-express node module', function (done) {
   it('should be able to ack server auth', function () {
@@ -82,10 +86,10 @@ describe('node-weixin-express node module', function (done) {
     var token = 'sdfsdf';
     var id = 'sofdsofd';
     var secret = 'sosos';
-    var server = nodeWeixinExpress({}, {
+    var server = express.parse({}, {
       token: token, id: id, secret: secret,
       host: 'http://localhost'
-    });
+    }, weixin);
     request(server)
       .get('/weixin/oauth/access')
       .expect(302)

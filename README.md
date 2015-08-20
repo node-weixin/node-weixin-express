@@ -2,6 +2,15 @@
 
 > A deployable express based weixin server
 
+## 功能说明
+  node-weixin-express是一个基于nodejs为基础，以expressjs作为首选http服务器框架的微信公共账号服务器。
+  他旨在降低开发微信公共账号时的门槛，节约开发时间。
+  几个主要目标：
+  1、可以直接通过一个命令运行微信公共账号服务(已经完成)
+  2、可以任意基于express的框架沟通协作（正在开发中)
+  3、模块化机制采用Unix开发哲学：KISS（执行中)
+  4、建立一个可以方便安装数据库，并且将配置信息存放在数据库里的机制(计划中）
+  5、通过express可以无需任何开发就可以自己建设一个功能全面的微信服务器（计划中)
 
 ## 反馈与帮助
 
@@ -14,12 +23,19 @@ $ npm install --g node-weixin-express
 ```
 
 
-## Usage
+## 使用说明
+
+安装后在命令行会多出一个命令:
+
+```sh
+weixin
+```
+注意：这里的命令名是weixin，不是node-weixin-express
 
 ###查看命令
 
 ```sh
-$ node-weixin-express --help
+$ weixin --help
 ```
 
 不需要再写代码，可以直接通过命令执行。

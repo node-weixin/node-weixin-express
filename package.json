@@ -3,18 +3,20 @@
   "version": "0.0.7",
   "description": "A deployable express based weixin server",
   "author": {
-    "name": "JSSDKCN",
+    "name": "node-weixin",
     "email": "calidion@gmail.com",
     "url": "blog.3gcnbeta.com"
   },
-  "repository": "JSSDKCN/node-weixin-express",
+  "repository": "node-weixin/node-weixin-express",
   "license": "MIT",
   "files": [
     "index.js",
     "cli.js",
     "lib",
     "routes",
-    "htmls"
+    "htmls",
+    "server",
+    "weixin"
   ],
   "keywords": [
     "node-weixin-express",

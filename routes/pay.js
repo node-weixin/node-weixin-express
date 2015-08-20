@@ -64,5 +64,17 @@ module.exports = {
       res.type("html");
       res.send(data);
     }
-  }
+  },
+  '/weixin/pay/back': function (app, merchant, certificate, urls, restApi) {
+    return function (req, res) {
+      if (!req.session.weixin || !req.session.weixin.openid) {
+        res.setHeader('referer', urls.pay.callback);
+        res.redirect(urls.access);
+        return;
+      }
+      var data = fs.readFileSync(path.resolve(__dirname, '../htmls/pay-main.html'));
+      res.type("html");
+      res.send(data);
+    }
+  },
 };

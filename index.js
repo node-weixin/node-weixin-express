@@ -1,5 +1,10 @@
 'use strict';
 
+var weixin = require('./weixin');
+module.exports = weixin;
+
+/**
+
 function restApi(res, error, data) {
   var _ = require("lodash");
   var json = _.assign({}, error);
@@ -168,3 +173,4 @@ module.exports = function (values, flags) {
 
   return http;
 };
+ */
