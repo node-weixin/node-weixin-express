@@ -15,10 +15,13 @@ module.exports = {
     var express = require('express');
     var bodyParser = require('body-parser');
     var session = require('express-session');
+    var cookieParser = require('cookie-parser');
     var http = express();
 
     http.use(bodyParser.urlencoded({extended: false}));
     http.use(bodyParser.json());
+    http.use(bodyParser.raw({ type: 'text/xml' }));
+    http.use(cookieParser());
     http.set('trust proxy', 1); // trust first proxy
     http.use(session({secret: 'mysecret', cookie: {maxAge: 60000}, resave: true, saveUninitialized: true}));
     return http;
@@ -44,7 +47,7 @@ module.exports = {
     var merchantId = flags['merchantId'] || process.env.MERCHANT_ID || null;
     var merchantKey = flags['merchantKey'] || process.env.MERCHANT_KEY || null;
 
-    //Certficate
+    //Certificate
     var certPKCS12File = flags['certFile'] || process.env.CERT_FILE || null;
     var certKey = flags['certKey'] || process.env.CERT_KEY || null;
 
@@ -78,7 +81,8 @@ module.exports = {
       success: host + '/weixin/oauth/success',
       redirect: redirect || host + '/weixin/oauth/redirect',
       pay: {
-        callback: payUrl || host + '/weixin/pay/callback'
+        callback: payUrl || host + '/weixin/pay/callback',
+        redirect: host + '/weixin/pay/main'
       }
     };
     var http = this.ready();

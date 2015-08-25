@@ -8,7 +8,7 @@ module.exports = {
     pay.init(app, merchant, certificate, urls);
     return function (req, res) {
       if (!req.session.weixin || !req.session.weixin.openid) {
-        res.setHeader('referer', urls.pay.callback);
+        res.setHeader('referer', urls.pay.redirect);
         res.redirect(urls.access);
         return;
       }
@@ -56,8 +56,9 @@ module.exports = {
   '/weixin/pay/main': function (app, merchant, certificate, urls, restApi) {
     return function (req, res) {
       if (!req.session.weixin || !req.session.weixin.openid) {
-        res.setHeader('referer', urls.pay.callback);
-        res.redirect(urls.access);
+        req.session.refer = urls.pay.redirect;
+        res.setHeader('referer', urls.pay.redirect);
+        res.redirect(urls.access + '?redirect=' + encodeURIComponent(urls.pay.redirect));
         return;
       }
       var data = fs.readFileSync(path.resolve(__dirname, '../htmls/pay-main.html'));
@@ -65,16 +66,13 @@ module.exports = {
       res.send(data);
     }
   },
-  '/weixin/pay/back': function (app, merchant, certificate, urls, restApi) {
+  '/weixin/pay/callback': function (app, merchant, certificate, urls, restApi) {
+    pay.init(app, merchant, certificate, urls);
     return function (req, res) {
-      if (!req.session.weixin || !req.session.weixin.openid) {
-        res.setHeader('referer', urls.pay.callback);
-        res.redirect(urls.access);
-        return;
-      }
-      var data = fs.readFileSync(path.resolve(__dirname, '../htmls/pay-main.html'));
-      res.type("html");
-      res.send(data);
-    }
-  },
+      pay.notify(req, res, function(error, data) {
+        console.log(error, data);
+        res.end();
+      });
+    };
+  }
 };

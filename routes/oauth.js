@@ -5,7 +5,7 @@ module.exports = {
   '/weixin/oauth/access': function (app, urls) {
     var oauth = require('../lib/oauth');
     return function (req, res) {
-      req.session.referer = req.headers['referer'];
+      req.session.referer = req.headers['referer'] || req.query.redirect || req.session.referer;
       var state = 'STATE';
 
       //0 表示 基本信息
