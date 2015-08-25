@@ -12,11 +12,11 @@
   "files": [
     "index.js",
     "cli.js",
+    "weixin.js",
     "lib",
     "routes",
     "htmls",
     "server",
-    "weixin",
     "images"
   ],
   "keywords": [
