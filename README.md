@@ -21,6 +21,47 @@
 
 nodejs微信开发交流QQ群： 39287176
 
+注:
+ [node-weixin-express](https://github.com/node-weixin/node-weixin-express)是基于node-weixin-*的服务器端参考实现。
+
+ [node-weixin-api](https://github.com/node-weixin/node-weixin-api)是基于node-weixin-*的API接口SDK。
+
+ 它们都是由下列子项目组合而成:
+
+ 1. [node-weixin-config](https://github.com/node-weixin/node-weixin-config)
+    用于微信配置信息的校验
+
+ 2. [node-weixin-auth](https://github.com/node-weixin/node-weixin-auth)
+    用于与微信服务器握手检验
+
+ 3. [node-weixin-util](https://github.com/node-weixin/node-weixin-util)
+    一些常用的微信请求，加密，解密，检验的功能与处理
+
+ 4. [node-weixin-request](https://github.com/node-weixin/node-weixin-request)
+    微信的各类服务的HTTP请求的抽象集合
+
+ 5. [node-weixin-oauth](https://github.com/node-weixin/node-weixin-oauth)
+    微信OAuth相关的操作
+
+ 6. [node-weixin-pay](https://github.com/node-weixin/node-weixin-pay)
+    微信支付的服务器接口
+
+ 7. [node-weixin-jssdk](https://github.com/node-weixin/node-weixin-jssdk)
+    微信JSSDK相关的服务器接口
+
+ 8. [node-weixin-menu](https://github.com/node-weixin/node-weixin-menu)
+    微信菜单相关的操作与命令
+    
+ 9. [node-weixin-user](https://github.com/node-weixin/node-weixin-user)
+    微信用户API
+    
+10. [node-weixin-media](https://github.com/node-weixin/node-weixin-media)
+    微信多媒体API
+
+11. [node-weixin-link](https://github.com/node-weixin/node-weixin-link)
+    微信推广(二维码,URL)API
+
+
 ## Install
 
 ```sh
@@ -114,14 +155,14 @@ forever start $(which weixin) --port 333 --id id --secret secret --token token -
 4.作为支付服务器
 
 ```sh
-weixin --port 333 --id appid --secret appsecret --token apptoken \
+weixin --port 3333 --id appid --secret appsecret --token apptoken \
  --jssdk-url http://wx.domain.com/weixin/jssdk/main --host http://wx.domain.com \
  --merchant-id mid  --merchant-key mkey \
  --cert-file apiclient_cert.p12 --cert-key ckey \
  --pay-url http://wx.domian.com/weixin/pay \
  --redirect http://wx.domain.com/weixin/pay/main
  
-forever start $(which weixin) --port 333 --id appid --secret appsecret --token apptoken \
+forever start $(which weixin) --port 3333 --id appid --secret appsecret --token apptoken \
   --jssdk-url http://wx.domain.com/weixin/jssdk/main --host http://wx.domain.com \
   --merchant-id mid  --merchant-key mid \
   --cert-file apiclient_cert.p12 --cert-key ckey \

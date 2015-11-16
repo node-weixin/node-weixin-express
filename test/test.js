@@ -7,6 +7,9 @@ var errors = require('web-errors').errors;
 
 var request = require('supertest');
 var assert = require('assert');
+var api = require('node-weixin-api');
+
+
 
 var id = process.env.APP_ID;
 var secret = process.env.APP_SECRET;
@@ -26,10 +29,9 @@ var server = express.parse({}, expressConf, weixin);
 
 describe('node-weixin-express node module', function (done) {
   it('should be able to ack server auth', function () {
-    var nodeWeixinAuth = require('node-weixin-auth');
     var time = new Date().getTime();
     var nonce = 'nonce';
-    var signature = nodeWeixinAuth.generateSignature(token, time, nonce);
+    var signature = api.auth.generateSignature(token, time, nonce);
     var echostr = 'Hello world!';
     var data = {
       signature: signature,
@@ -64,10 +66,9 @@ describe('node-weixin-express node module', function (done) {
   });
 
   it('should not be able to ack server auth due to input invalid', function () {
-    var nodeWeixinAuth = require('node-weixin-auth');
     var time = new Date().getTime();
     var nonce = 'nonce';
-    var signature = nodeWeixinAuth.generateSignature(token, time, nonce);
+    var signature = api.auth.generateSignature(token, time, nonce);
     var data = {
       signature: signature,
       timestamp: time,
@@ -82,7 +83,6 @@ describe('node-weixin-express node module', function (done) {
   });
 
   it('should be able to redirect to a url', function () {
-    var nodeWeixinOauth = require('node-weixin-oauth');
     var token = 'sdfsdf';
     var id = 'sofdsofd';
     var secret = 'sosos';
@@ -96,7 +96,7 @@ describe('node-weixin-express node module', function (done) {
       .end(function (err, res) {
         assert.equal(true, !err);
         if (!err) {
-          var location = nodeWeixinOauth.createURL(id, 'http://localhost/weixin/oauth/success', 'status', 0);
+          var location = api.oauth.createURL(id, 'http://localhost/weixin/oauth/success', 'status', 0);
           assert.equal(true, location === res.headers.location);
         } else {
           throw err;

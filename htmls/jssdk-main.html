@@ -29,10 +29,7 @@
     $(document).ready(function () {
       var url = "/weixin/jssdk/config";
       $.ajax({
-        url: url,
-        data: {
-          url: 'http://wx.t1bao.com/weixin/jssdk/main'
-        }
+        url: url
       }).success(function (json) {
         alert(JSON.stringify(json.data));
         var data = json.data;

@@ -1,18 +1,8 @@
-function restApi(res, error, data) {
-  var _ = require("lodash");
-  var json = _.assign({}, error);
-  if (data) {
-    json.data = data;
-  } else {
-    delete json.data;
-  }
-  res.json(json);
-}
-
+var serverConfig = require('../config');
+var express = require('express');
 
 module.exports = {
-  ready: function () {
-    var express = require('express');
+  prepare: function () {
     var bodyParser = require('body-parser');
     var session = require('express-session');
     var cookieParser = require('cookie-parser');
@@ -20,13 +10,19 @@ module.exports = {
 
     http.use(bodyParser.urlencoded({extended: false}));
     http.use(bodyParser.json());
-    http.use(bodyParser.raw({ type: 'text/xml' }));
+    http.use(bodyParser.raw({type: 'text/xml'}));
     http.use(cookieParser());
     http.set('trust proxy', 1); // trust first proxy
     http.use(session({secret: 'mysecret', cookie: {maxAge: 60000}, resave: true, saveUninitialized: true}));
     return http;
   },
+
   parse: function (values, flags, weixin) {
+
+    var path = require('path');
+    var fs = require('fs');
+    var conf = require("node-weixin-config");
+
     //Getting data from cli
 
     //Auth basic
@@ -62,20 +58,23 @@ module.exports = {
       token: token
     };
 
-
     var merchant = {
       id: String(merchantId),
       key: String(merchantKey)
     };
 
-    var path = require('path');
     var certificate = null;
     if (certPKCS12File) {
       certificate = {
         pkcs12: path.resolve(certPKCS12File),
         key: String(certKey)
       };
+      certificate = {
+        pfx: fs.readFileSync(path.resolve(certPKCS12File)),
+        pfxKey: String(certKey)
+      };
     }
+
     var urls = {
       access: host + '/weixin/oauth/access',
       success: host + '/weixin/oauth/success',
@@ -85,54 +84,55 @@ module.exports = {
         redirect: host + '/weixin/pay/main'
       }
     };
-    var http = this.ready();
-    this.run(http, weixin, app, merchant, certificate, jsurl, urls);
+
+    serverConfig.urls = urls;
+    var router = this.initApis(app, merchant, certificate, urls);
+    var http = this.prepare();
+    http.use('/weixin', router);
     return http;
   },
-  run: function (http, weixin, app, merchant, certificate, jsurl, urls) {
-    var config = require("node-weixin-config");
-
-    if (app.token) {
-      weixin.init.auth(http, app.token);
-      console.log('Auth Ack Server Ready!');
-    }
+  initApis: function(app, merchant, certificate, urls) {
+    var router = express.Router();
     try {
-      config.app.init(app);
-      if (jsurl) {
-        weixin.init.jssdk(http, app, jsurl, restApi);
-        console.log('JSSDK Server Ready!');
+      conf.app.init(app);
+      if (app.token) {
+        weixin.apis.auth(router, app);
+        weixin.apis.jssdk(router, app);
+        console.log('Auth Ack And JSSDK Server Ready!');
+      } else {
+        throw new Error("Token Not Specified");
       }
       try {
-        config.urls.oauth.init(urls);
-        weixin.init.oauth(http, app, urls);
+        conf.urls.oauth.init(urls);
+        weixin.apis.oauth(router, app);
         console.log('OAuth Server Ready!');
         try {
-          config.merchant.init(merchant);
+          conf.merchant.init(merchant);
           console.log('Merchant Initialized!');
           try {
-            config.certificate.init(certificate.pkcs12, certificate.key);
+            conf.certificate.init(certificate.pfx, certificate.pfxKey);
             console.log('Certificate Initialized!');
-            try {
-              weixin.init.pay(http, app, merchant, certificate, urls, restApi);
-              console.log('Weixin Pay Server Ready!');
-            } catch (e) {
-              console.log('Failed to init Weixin Pay');
-              console.log(e);
-            }
-          } catch (e) {
+            weixin.apis.pay(router, {
+              app: app,
+              merchant: merchant,
+              certificate: certificate
+            });
+
+          } catch(e) {
             console.log('Failed to init Weixin Pay Certificate');
-            console.log(e);
           }
-        } catch (e) {
-          console.log('Failed to init Weixin Pay Merchant');
+        } catch(e) {
+          console.log('Failed to init Weixin Pay Merchant!');
         }
       } catch (e) {
-        console.log('Failed to init Oauth');
+        console.log('Failed to init Oauth Server!');
       }
     } catch (e) {
-      console.log('Failed to init JSSDK And Oauth');
+      console.log("Pure Server Ready!, Configuration Needed!");
     }
-    return http;
-  }
+    return router;
+  },
+  initPages: function() {
 
+  }
 };
