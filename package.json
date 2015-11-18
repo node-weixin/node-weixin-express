@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A deployable express based weixin server",
   "author": {
     "name": "node-weixin",
@@ -33,6 +33,7 @@
     "log4js": "^0.6.26",
     "meow": "^3.1.0",
     "node-weixin-api": "^0.2.4",
+    "node-weixin-config": "^0.2.0",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
   },
