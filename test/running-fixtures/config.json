@@ -1,0 +1,22 @@
+{
+  "app": {
+    "id": "",
+    "secret": "",
+    "token": ""
+  },
+  "merchant": {
+    "id": "",
+    "key": ""
+  },
+  "jssdk": {
+    "url": ""
+  },
+  "host": "",
+  "pay": {
+    "callback": ""
+  },
+  "certificate" : {
+    "pfx" : ".",
+    "key": ""
+  }
+}

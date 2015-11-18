@@ -16,8 +16,8 @@ var cli = meow({
     '  weixin --port 10000 --token aasdsfsdfsf --id wx13383338ea --secret ab3ed23232323 --host http://localhost'
   ].join('\n')
 });
-var weixin = require('./weixin');
-var express = require('./server/express');
+var weixin = require('./lib/weixin');
+var express = require('./lib/server/express');
 
 var app = express.parse(cli.input, cli.flags, weixin);
 

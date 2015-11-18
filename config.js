@@ -1,5 +1,5 @@
 module.exports = {
-  urs: {
+  urls: {
     success: '',
     access: '',
     redirect: ''

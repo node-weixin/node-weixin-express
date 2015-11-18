@@ -1,6 +1,6 @@
 'use strict';
-var weixin = require('../weixin');
-var express = require('../server/express');
+var weixin = require('../lib/weixin');
+var express = require('../lib/server/express');
 
 var errors = require('web-errors').errors;
 

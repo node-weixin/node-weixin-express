@@ -1,6 +1,6 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coveralls Status][coveralls-image]][coveralls-url]
 
-> A deployable express based weixin server
+> 
 
 ## 功能说明
   node-weixin-express是一个基于nodejs为基础，以expressjs作为首选http服务器框架的微信公共账号服务器。
@@ -138,7 +138,7 @@ forever start $(which weixin) --port 3333 [--port port] [--token token] [--id id
 
 微信就会自动验证，只要你的验证正确，在没有配置redirect参数时，会出现如下结果：
 
-<img src="/images/oauth-success.jpg" height="400"/>
+<img src="/test/images/oauth-success.jpg" height="400"/>
 
 3.作为JSSDK服务器
 
@@ -150,7 +150,7 @@ forever start $(which weixin) --port 333 --id id --secret secret --token token -
 启动后让微信访问：http://yourdomain.com/weixin/jssdk/main
 查看功能配置情况。
 
-<img src="/images/jssdk-success.png" height="400"/>
+<img src="/test/images/jssdk-success.png" height="400"/>
 
 4.作为支付服务器
 
@@ -170,8 +170,7 @@ forever start $(which weixin) --port 3333 --id appid --secret appsecret --token 
   --redirect http://wx.domain.com/weixin/pay/main
   
 ```
-<img src="/images/pay-success.png" height="400"/>
-
+<img src="/test/images/pay-success.png" height="400"/>
 
 
 ## License
@@ -185,3 +184,5 @@ MIT © [node-weixin](blog.3gcnbeta.com)
 [travis-url]: https://travis-ci.org/node-weixin/node-weixin-express
 [daviddm-image]: https://david-dm.org/node-weixin/node-weixin-express.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/node-weixin/node-weixin-express
+[coveralls-image]: https://coveralls.io/repos/node-weixin/node-weixin-express/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/node-weixin/node-weixin-express?branch=master
