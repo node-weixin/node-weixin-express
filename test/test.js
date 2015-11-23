@@ -22,7 +22,7 @@ var expressConf = {
   token: token,
   host: host
 };
-var server = express.parse({}, expressConf, weixin);
+var server = express.start({}, expressConf, weixin);
 
 
 describe('node-weixin-express node module', function () {
@@ -89,7 +89,7 @@ describe('node-weixin-express node module', function () {
       var token = 'sdfsdf';
       var id = 'sofdsofd';
       var secret = 'sosos';
-      var server = express.parse({}, {
+      var server = express.start({}, {
         token: token, id: id, secret: secret,
         host: 'localhost'
       }, weixin);
@@ -112,7 +112,7 @@ describe('node-weixin-express node module', function () {
       var token = 'sdfsdf';
       var id = 'sofdsofd';
       var secret = 'sosos';
-      var server = express.parse({}, {
+      var server = express.start({}, {
         token: token, id: id, secret: secret,
         host: 'localhost'
       }, weixin);
@@ -130,7 +130,7 @@ describe('node-weixin-express node module', function () {
       var token = 'sdfsdf';
       var id = 'sofdsofd';
       var secret = 'sosos';
-      var server = express.parse({}, {
+      var server = express.start({}, {
         token: token, id: id, secret: secret,
         host: 'localhost'
       }, weixin);
@@ -148,7 +148,7 @@ describe('node-weixin-express node module', function () {
       var token = 'sdfsdf';
       var id = 'sofdsofd';
       var secret = 'sosos';
-      var server = express.parse({}, {
+      var server = express.start({}, {
         token: token, id: id, secret: secret,
         host: 'localhost'
       }, weixin);

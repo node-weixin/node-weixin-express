@@ -17,9 +17,9 @@ var cli = meow({
   ].join('\n')
 });
 var weixin = require('./lib/weixin');
-var express = require('./lib/server/express');
+var server = require('./lib/server/express');
 
-var app = express.parse(cli.input, cli.flags, weixin);
+var app = server.start(cli.input, cli.flags, weixin);
 
 var port = cli.flags['port'] || process.env.PORT || 3333;
 
