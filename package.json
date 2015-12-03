@@ -32,7 +32,7 @@
     "express-session": "^1.11.3",
     "log4js": "^0.6.26",
     "meow": "^3.1.0",
-    "node-weixin-api": "^0.2.5",
+    "node-weixin-api": "^0.2.6",
     "node-weixin-config": "^0.2.0",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"

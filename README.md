@@ -175,7 +175,7 @@ forever start $(which weixin) --port 3333 --id appid --secret appsecret --token 
 
 ## License
 
-MIT © [node-weixin](blog.3gcnbeta.com)
+MIT © [node-weixin](http://www.node-weixin.com)
 
 
 [npm-image]: https://badge.fury.io/js/node-weixin-express.svg
