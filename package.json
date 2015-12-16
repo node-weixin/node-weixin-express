@@ -2,28 +2,23 @@
   "name": "node-weixin-express",
   "version": "0.1.3",
   "description": "A deployable express based weixin server",
+  "homepage": "",
   "author": {
     "name": "node-weixin",
     "email": "calidion@gmail.com",
     "url": "blog.3gcnbeta.com"
   },
-  "repository": "node-weixin/node-weixin-express",
-  "license": "MIT",
   "files": [
-    "index.js",
-    "cli.js",
-    "weixin.js",
-    "lib",
-    "routes",
-    "htmls",
-    "server",
-    "images"
+    "lib"
   ],
+  "main": "dist/index.js",
   "keywords": [
     "node-weixin-express",
     "weixin",
     "express"
   ],
+  "repository": "node-weixin/node-weixin-express",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
     "cookie-parser": "^1.3.5",
@@ -31,9 +26,11 @@
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "log4js": "^0.6.26",
-    "meow": "^3.1.0",
-    "node-weixin-api": "^0.2.6",
+    "meow": "^3.3.0",
+    "node-weixin-api": "^0.2.7",
     "node-weixin-config": "^0.2.0",
+    "node-weixin-order": "0.0.3",
+    "node-weixin-router": "0.0.2",
     "supertest": "^1.0.1",
     "web-errors": "^0.1.5"
   },
@@ -50,13 +47,24 @@
     "mocha": "^2.3.4",
     "nock": "^2.10.0",
     "node-weixin-util": "^0.2.0",
-    "time-grunt": "^1.1.0"
+    "time-grunt": "^1.1.0",
+    "gulp": "^3.6.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-babel": "^5.1.0",
+    "del": "^2.0.2",
+    "babel-core": "^5.5.0",
+    "isparta": "^3.0.3"
   },
   "scripts": {
-    "test": "grunt",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    "test": "gulp",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
+    "prepublish": "gulp prepublish"
   },
-  "bin": {
-    "weixin": "cli.js"
-  }
+  "bin": "lib/cli.js"
 }
