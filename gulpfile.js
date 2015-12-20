@@ -33,7 +33,8 @@ gulp.task('pre-test', function () {
       includeUntested: true,
       instrumenter: isparta.Instrumenter
     }))
-    .pipe(istanbul.hookRequire());
+    .pipe(istanbul.hookRequire())
+    ;
 });
 
 gulp.task('test', ['pre-test'], function (cb) {
@@ -44,6 +45,7 @@ gulp.task('test', ['pre-test'], function (cb) {
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function (err) {
       mochaErr = err;
+      throw err;
     })
     .pipe(istanbul.writeReports())
     .on('end', function () {

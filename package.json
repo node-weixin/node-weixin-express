@@ -9,7 +9,8 @@
     "url": "blog.3gcnbeta.com"
   },
   "files": [
-    "lib"
+    "lib",
+    "views"
   ],
   "main": "dist/index.js",
   "keywords": [
@@ -22,48 +23,40 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "cookie-parser": "^1.3.5",
-    "ejs": "^2.3.4",
+    "ect": "^0.5.9",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "log4js": "^0.6.26",
     "meow": "^3.3.0",
-    "node-weixin-api": "^0.2.7",
+    "node-weixin-api": "^0.2.8",
     "node-weixin-config": "^0.2.0",
-    "node-weixin-order": "0.0.3",
-    "node-weixin-router": "0.0.2",
-    "supertest": "^1.0.1",
+    "node-weixin-router": "0.0.8",
+    "node-weixin-session": "0.0.1",
     "web-errors": "^0.1.5"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-cli": "^1.12.0",
-    "istanbul": "^0.4.0",
-    "jshint-stylish": "^1.0.1",
-    "load-grunt-tasks": "^3.1.0",
-    "mocha": "^2.3.4",
-    "nock": "^2.10.0",
-    "node-weixin-util": "^0.2.0",
-    "time-grunt": "^1.1.0",
+    "babel-core": "^5.5.0",
+    "del": "^2.0.2",
     "gulp": "^3.6.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-coveralls": "^0.1.0",
     "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^0.9.0",
     "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0",
-    "gulp-coveralls": "^0.1.0",
-    "gulp-babel": "^5.1.0",
-    "del": "^2.0.2",
-    "babel-core": "^5.5.0",
-    "isparta": "^3.0.3"
+    "gulp-plumber": "^1.0.0",
+    "isparta": "^3.0.3",
+    "istanbul": "^0.4.0",
+    "jshint-stylish": "^1.0.1",
+    "mocha": "^2.3.4",
+    "nock": "^2.10.0",
+    "node-weixin-session": "0.0.1",
+    "node-weixin-util": "^0.2.0",
+    "supertest": "^1.0.1"
   },
   "scripts": {
     "test": "gulp",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "prepublish": "gulp prepublish"
   },
   "bin": "lib/cli.js"

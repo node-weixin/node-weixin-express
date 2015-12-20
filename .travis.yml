@@ -5,5 +5,12 @@ node_js:
   - v4
   - '0.12'
   - '0.10'
-script: 'npm run-script test-travis'
-after_script: 'npm install coveralls && cat ./coverage/lcov.info | coveralls'
+env:
+  - NPM_VERSION=3.5
+
+before_install:
+  - npm install -g npm@$NPM_VERSION
+  - npm --version
+
+script:
+  - true
