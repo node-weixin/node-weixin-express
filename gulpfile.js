@@ -15,8 +15,11 @@ var isparta = require('isparta');
 // when they're loaded
 require('babel-core/register');
 
+var frontends = ['lib/**/*.png', 'lib/**/*.html', 'lib/**/*.ejs', 'lib/**/*.css'];
+var backends = ['lib/**/*.js', '!lib/statics/**/*.js', '!lib/views/**/*.js'];
+
 gulp.task('static', function () {
-  return gulp.src('**/*.js')
+  return gulp.src(backends)
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -28,7 +31,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('lib/**/*.js')
+  return gulp.src(backends)
     .pipe(istanbul({
       includeUntested: true,
       instrumenter: isparta.Instrumenter
@@ -63,14 +66,26 @@ gulp.task('coveralls', ['test'], function () {
 });
 
 gulp.task('babel', ['clean'], function () {
-  return gulp.src('lib/**/*.js')
+  return gulp.src(backends)
     .pipe(babel())
     .pipe(gulp.dest('dist'));
 });
+
+gulp.task('copy', function () {
+  return gulp.src(frontends)
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('run', ['babel', 'copy']);
 
 gulp.task('clean', function () {
   return del('dist');
 });
 
+gulp.task('watch', function() {
+  gulp.watch(frontends, ['copy']);
+  gulp.watch(backends, ['nsp', 'babel', 'test']);
+});
+
 gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls']);
+gulp.task('default', ['copy', 'static', 'test', 'coveralls']);
