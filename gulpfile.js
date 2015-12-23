@@ -84,7 +84,7 @@ gulp.task('clean', function () {
 
 gulp.task('watch', function() {
   gulp.watch(frontends, ['copy']);
-  gulp.watch(backends, ['nsp', 'babel', 'test']);
+  gulp.watch(backends, ['nsp', 'babel', 'test', 'copy']);
 });
 
 gulp.task('prepublish', ['nsp', 'babel']);

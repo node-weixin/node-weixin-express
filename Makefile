@@ -1,4 +1,5 @@
 run:
+	rm -rf dist
 	gulp run
 	node dist/cli.js
 test:
