@@ -5,17 +5,17 @@
 ## 功能说明
   node-weixin-express是一个基于nodejs为基础，以expressjs作为首选http服务器框架的微信公共账号服务器。
   他旨在降低开发微信公共账号时的门槛，节约开发时间。
-  几个主要目标：
+  几个主要功能：
   1. 可以直接通过一个命令运行微信公共账号服务(已经完成)
   2. 实现基本的微信功能：
-    - 验证服务器(已经完成)
-    - OAuth 验证API(已经完成)
-    - 微信支付API(已经完成)
-    - 消息接口API(等待完成)
-  3. 可以任意基于express的框架沟通协作（正在开发中)
-  4. 模块化机制采用Unix开发哲学：KISS（执行中)
-  5. 建立一个可以方便安装数据库，并且将配置信息存放在数据库里的机制(计划中）
-  6. 通过express可以无需任何开发就可以自己建设一个功能全面的微信服务器（计划中)
+    - 验证服务器
+    - OAuth 验证API
+    - 微信支付API
+    - 消息接口API
+  3. 可以任意基于express的框架沟通协作
+  4. 模块化机制采用Unix开发哲学：KISS
+  5. 建立一个可以方便安装数据库，并且将配置信息存放在数据库里的机制）
+  6. 通过express可以无需任何开发就可以自己建设一个功能全面的微信服务器
 
 ## 反馈与帮助
 
@@ -60,6 +60,9 @@ nodejs微信开发交流QQ群： 39287176
 
 11. [node-weixin-link](https://github.com/node-weixin/node-weixin-link)
     微信推广(二维码,URL)API
+ 
+12. [node-weixin-message](https://github.com/node-weixin/node-weixin-message)
+    微信消息API
 
 
 ## Install
