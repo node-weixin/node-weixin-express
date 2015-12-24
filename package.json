@@ -32,6 +32,7 @@
     "node-weixin-config": "^0.2.0",
     "node-weixin-router": "0.0.8",
     "node-weixin-session": "0.0.1",
+    "skipper": "^0.5.8",
     "web-errors": "^0.1.5"
   },
   "devDependencies": {
