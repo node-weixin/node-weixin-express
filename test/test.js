@@ -62,7 +62,7 @@ describe('node-weixin-express node module', function () {
         nonce: nonce,
         echostr: echostr
       };
-      var url = '/weixin/auth/ack?' + util.toParam(data);
+      var url = '/' + app.id + '/weixin/auth/ack?' + util.toParam(data);
       var server = express.start(port, host);
       request(server)
         .get(url)
@@ -81,7 +81,7 @@ describe('node-weixin-express node module', function () {
         nonce: nonce,
         echostr: echostr
       };
-      var url = '/weixin/auth/ack?' + util.toParam(data);
+      var url = '/' + app.id + '/weixin/auth/ack?' + util.toParam(data);
       var server = express.start(port, host);
       request(server)
         .get(url)
@@ -99,7 +99,7 @@ describe('node-weixin-express node module', function () {
         timestamp: time,
         nonce: nonce
       };
-      var url = '/weixin/auth/ack?' + util.toParam(data);
+      var url = '/' + app.id + '/weixin/auth/ack?' + util.toParam(data);
       var server = express.start(port, host);
 
       request(server)
@@ -115,7 +115,7 @@ describe('node-weixin-express node module', function () {
       var server = express.start(port, host);
 
       request(server)
-        .get('/weixin/oauth/access')
+        .get('/' + app.id + '/weixin/oauth/access')
         .expect(302)
         .end(function (err, res) {
           assert.equal(true, !err);
@@ -136,7 +136,7 @@ describe('node-weixin-express node module', function () {
     it('should be able to handle oauth not success', function (done) {
       var server = express.start(port, host);
       request(server)
-        .get('/weixin/oauth/success')
+        .get('/' + app.id + '/weixin/oauth/success')
         .expect(302)
         .end(function (err, res) {
           assert.equal(true, !err);
@@ -148,7 +148,7 @@ describe('node-weixin-express node module', function () {
     it('should be able to handle oauth success', function (done) {
       var server = express.start(port, host);
       request(server)
-        .get('/weixin/oauth/success')
+        .get('/' + app.id + '/weixin/oauth/success')
         .expect(302)
         .end(function (err, res) {
           assert.equal(true, !err);
@@ -160,7 +160,7 @@ describe('node-weixin-express node module', function () {
     it('should be able to handle oauth success', function (done) {
       var server = express.start(port, host);
       request(server)
-        .get('/weixin/oauth/success?code=100')
+        .get('/' + app.id + '/weixin/oauth/success?code=100')
         .expect(302)
         .end(function (err) {
           assert.equal(true, !err);
