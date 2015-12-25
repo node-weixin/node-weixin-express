@@ -32,6 +32,10 @@ describe('cli', function () {
         .get('/' + id + '/config/app')
         .expect(200)
         .end(function (error, res) {
+          cookies = res.headers['set-cookie']
+            .map(function (r) {
+              return r.replace("; path=/; httponly", "")
+            }).join("; ");
           assert.equal(true, !error);
           done();
         });
@@ -40,17 +44,14 @@ describe('cli', function () {
       var request = require('supertest');
       var req = request(app)
         .post('/' + id + '/config/app');
+      req.cookies = cookies;
       req.send({
-          id: id,
           secret: secret,
           token: token
         })
         .expect(200)
         .end(function (error, res) {
-          cookies = res.headers['set-cookie']
-            .map(function (r) {
-              return r.replace("; path=/; httponly", "")
-            }).join("; ");
+
           assert.equal(true, !error);
           assert.equal(true, res.text.indexOf(id) !== -1);
           assert.equal(true, res.text.indexOf(secret) !== -1);
@@ -190,6 +191,7 @@ describe('cli', function () {
         .end(function (error, res) {
           assert.equal(true, !error);
           assert.equal(true, res.text.indexOf(pay.key) !== -1);
+          assert.equal(true, res.text.indexOf('私钥值') !== -1);
           done();
         });
     });
