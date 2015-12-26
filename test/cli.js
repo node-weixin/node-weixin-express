@@ -3,7 +3,7 @@ var assert = require('assert');
 var session = require('../lib/mySession');
 
 
-process.argv = process.argv.concat(['--port', '8717', '--test', 'true']);
+process.argv = process.argv.concat(['--port', '8717', '--test', 'true', '--config', 'test/assets/config.json']);
 
 var app = require('../lib/cli');
 
