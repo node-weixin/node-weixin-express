@@ -1,4 +1,3 @@
-var parser = require('../lib/cli-parser');
 var assert = require('assert');
 
 var session = require('../lib/mySession');
