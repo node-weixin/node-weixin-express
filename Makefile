@@ -1,7 +1,7 @@
 run:
 	rm -rf dist
 	gulp run
-	node dist/cli.js
+	node dist/cli.js ${ARGS}
 test:
 	gulp prepublish
 	gulp
