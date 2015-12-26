@@ -30,7 +30,7 @@
     "meow": "^3.3.0",
     "node-weixin-api": "^0.2.8",
     "node-weixin-config": "^0.2.0",
-    "node-weixin-router": "0.0.9",
+    "node-weixin-router": "0.0.11",
     "node-weixin-session": "0.0.1",
     "qr-image": "^3.1.0",
     "skipper": "^0.5.8",
