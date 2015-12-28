@@ -47,7 +47,7 @@ nodejs微信开发交流QQ群： 39287176
  9. [node-weixin-user](https://github.com/node-weixin/node-weixin-user)：微信用户API
  10. [node-weixin-media](https://github.com/node-weixin/node-weixin-media)：微信多媒体API
  11. [node-weixin-link](https://github.com/node-weixin/node-weixin-link)：微信推广(二维码,URL)API
- 12. [weixin.message](https://github.com/node-weixin/node-weixin-message)：微信消息处理模块
+ 12. [node-weixin-message](https://github.com/node-weixin/node-weixin-message)：微信消息处理模块
 
 ## Install
 
