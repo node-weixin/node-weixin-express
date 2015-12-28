@@ -6,7 +6,7 @@
   node-weixin-express是一个基于nodejs为基础，以expressjs作为首选http服务器框架的微信公共账号服务器。
   他旨在降低开发微信公共账号时的门槛，节约开发时间。
 
-## 主要目标：
+## 主要目标
   1. 可以直接通过一个命令运行微信公共账号服务(已经完成)
   2. 实现基本的微信功能：
     - 验证服务器
@@ -21,8 +21,8 @@
 ## 重要子模块
   1. [node-weixin-api](https://github.com/node-weixin/node-weixin-api):提供所有基础的微信api
   2. [node-weixin-router](https://github.com/node-weixin/node-weixin-api):提供所有的基于web框架的默认路由与回调机制
-  3. [node-weixin-session](https://github.com/node-weixin/node-weixin-session]:提供所有基于session的数据保存机制
-  4. [node-weixin-settins](https://github.com/node-weixin/node-weixin-settings]:提供所有基于appId的数据保存机制
+  3. [node-weixin-session](https://github.com/node-weixin/node-weixin-session):提供所有基于session的数据保存机制
+  4. [node-weixin-settins](https://github.com/node-weixin/node-weixin-settings):提供所有基于appId的数据保存机制
 
 
 ## 反馈与帮助
@@ -36,39 +36,18 @@ nodejs微信开发交流QQ群： 39287176
 
  它们都是由下列子项目组合而成:
 
- 1. [node-weixin-config](https://github.com/node-weixin/node-weixin-config)
-    用于微信配置信息的校验
-
- 2. [node-weixin-auth](https://github.com/node-weixin/node-weixin-auth)
-    用于与微信服务器握手检验
-
- 3. [node-weixin-util](https://github.com/node-weixin/node-weixin-util)
-    一些常用的微信请求，加密，解密，检验的功能与处理
-
- 4. [node-weixin-request](https://github.com/node-weixin/node-weixin-request)
-    微信的各类服务的HTTP请求的抽象集合
-
- 5. [node-weixin-oauth](https://github.com/node-weixin/node-weixin-oauth)
-    微信OAuth相关的操作
-
- 6. [node-weixin-pay](https://github.com/node-weixin/node-weixin-pay)
-    微信支付的服务器接口
-
- 7. [node-weixin-jssdk](https://github.com/node-weixin/node-weixin-jssdk)
-    微信JSSDK相关的服务器接口
-
- 8. [node-weixin-menu](https://github.com/node-weixin/node-weixin-menu)
-    微信菜单相关的操作与命令
-    
- 9. [node-weixin-user](https://github.com/node-weixin/node-weixin-user)
-    微信用户API
-    
-10. [node-weixin-media](https://github.com/node-weixin/node-weixin-media)
-    微信多媒体API
-
-11. [node-weixin-link](https://github.com/node-weixin/node-weixin-link)
-    微信推广(二维码,URL)API
-
+ 1. [node-weixin-config](https://github.com/node-weixin/node-weixin-config)：用于微信配置信息的校验
+ 2. [node-weixin-auth](https://github.com/node-weixin/node-weixin-auth)：用于与微信服务器握手检验
+ 3. [node-weixin-util](https://github.com/node-weixin/node-weixin-util)：一些常用的微信请求，加密，解密，检验的功能与处理
+ 4. [node-weixin-request](https://github.com/node-weixin/node-weixin-request)：微信的各类服务的HTTP请求的抽象集合
+ 5. [node-weixin-oauth](https://github.com/node-weixin/node-weixin-oauth)：微信OAuth相关的操作
+ 6. [node-weixin-pay](https://github.com/node-weixin/node-weixin-pay)：微信支付的服务器接口
+ 7. [node-weixin-jssdk](https://github.com/node-weixin/node-weixin-jssdk)：微信JSSDK相关的服务器接口
+ 8. [node-weixin-menu](https://github.com/node-weixin/node-weixin-menu)：微信菜单相关的操作与命令
+ 9. [node-weixin-user](https://github.com/node-weixin/node-weixin-user)：微信用户API
+ 10. [node-weixin-media](https://github.com/node-weixin/node-weixin-media)：微信多媒体API
+ 11. [node-weixin-link](https://github.com/node-weixin/node-weixin-link)：微信推广(二维码,URL)API
+ 12. [weixin.message](https://github.com/node-weixin/node-weixin-message)：微信消息处理模块
 
 ## Install
 
