@@ -5,7 +5,7 @@ var session = require('../lib/mySession');
 
 process.argv = process.argv.concat(['--port', '8717', '--test', 'true', '--config', 'test/assets/config.json']);
 
-var app = require('../lib/cli');
+var app = require('../lib/cmd');
 
 var id = '13828382323';
 var secret = 'secret1';

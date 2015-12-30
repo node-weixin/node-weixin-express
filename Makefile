@@ -3,11 +3,13 @@ run:
 	gulp run
 	node dist/cli.js ${ARGS}
 test:
+	rm -rf dist
 	gulp prepublish
 	gulp
 release:
-	gulp prepublish
+	rm -rf dist
 	gulp
+	rm -rf dist
 	npm publish
 clean:
 	rm -rf dist
