@@ -384,21 +384,27 @@ describe('cli', function () {
 
 
   describe("session", function () {
-    it('should get session by null request', function () {
-      session.get(null);
-      assert.equal(true, true);
+    it('should get session by null request', function (done) {
+      session.get(null, function() {
+        assert.equal(true, true);
+        done();
+      });
     });
-    it('should get session by request with no session', function () {
+    it('should get session by request with no session', function (done) {
       session.get({
         asoso: 1
+      }, function() {
+        assert.equal(true, true);
+        done()
       });
-      assert.equal(true, true);
     });
 
-    it('should get and set session by request', function () {
+    it('should get and set session by request', function (done) {
       session.set(null, 'aa', {data: 'temp'});
-      var data = session.get(null, 'aa');
-      assert.equal(true, data.data === 'temp');
+      session.get(null, 'aa', function(data) {
+        assert.equal(true, data.data === 'temp');
+        done();
+      });
     });
   });
 
