@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.2.0-beta",
+  "version": "0.2.0-beta-1",
   "description": "A deployable express based weixin server",
   "homepage": "",
   "author": {
