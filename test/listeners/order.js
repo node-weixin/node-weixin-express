@@ -5,8 +5,8 @@ import assert from 'assert';
 import async from 'async';
 
 
-describe('order', function() {
-  it('should handle onCreate event', function(done) {
+describe('order', function () {
+  it('should handle onCreate event', function (done) {
     var req = {
       headers: {},
       params: {
@@ -28,9 +28,8 @@ describe('order', function() {
           }
         }, cb);
       }],
-      function() {
-        order.onCreate(req, {}, function(error, data) {
-          console.log(error, data);
+      function () {
+        order.onCreate(req, {}, function (error, data) {
           assert.equal(true, !error);
           assert.equal(true, data.openid === 'sss');
           assert.equal(true, data.spbill_create_ip === '127.0.0.1');
@@ -44,7 +43,7 @@ describe('order', function() {
       });
   });
 
-  it('should run onNotify event', function() {
+  it('should run onNotify event', function () {
     order.onNotify();
   });
 });
