@@ -10,10 +10,10 @@ describe('order', function () {
     var req = {
       headers: {},
       params: {
-        id: '1'
+        __appId: '1'
       },
       session: {
-        id: '1'
+        __appId: '1'
       },
       ip: '127.0.0.1'
     };
@@ -22,7 +22,7 @@ describe('order', function () {
           openid: 'sss'
         }, cb);
       }, (cb) => {
-        settings.set(req.params.id, 'urls', {
+        settings.set(req.params.__appId, 'urls', {
           pay: {
             callback: ''
           }
