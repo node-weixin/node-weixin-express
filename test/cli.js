@@ -22,7 +22,7 @@ cmd.start(function (app) {
   };
 
   var certificate = {
-    key: merchant.id
+    pfxKey: merchant.id
   };
 
   var cookies = null;
@@ -54,6 +54,7 @@ cmd.start(function (app) {
           .post('/' + id + '/config/app');
         req.cookies = cookies;
         req.send({
+          id: id,
           secret: secret,
           token: token
         })
