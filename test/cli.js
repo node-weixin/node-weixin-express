@@ -1,4 +1,5 @@
 var assert = require('assert');
+var fs = require('fs');
 
 var session = require('../lib/mySession');
 
@@ -14,6 +15,7 @@ cmd.start(function (app) {
   var secret = 'secret1';
   var token = 'token1';
   var host = 'www.sina.com';
+  var prefix = 'weixin';
   var state = 'STATE';
   var scope = 0;
   var merchant = {
@@ -132,40 +134,20 @@ cmd.start(function (app) {
           });
       });
 
-      it('should be able to config host', function (done) {
+      it('should be able to set urls', function (done) {
         var request = require('supertest');
         var req = request(app)
-          .get('/' + id + '/config/host');
-        req.cookies = cookies;
-        req
-          .expect(200)
-          .end(function (error, res) {
-            assert.equal(true, !error);
-            assert.equal(true, res.text.indexOf(host) === -1);
-            assert.equal(true, res.text.indexOf('auth/ack') !== -1);
-            assert.equal(true, res.text.indexOf('jssdk/config') !== -1);
-            assert.equal(true, res.text.indexOf('pages/jssdk') !== -1);
-            assert.equal(true, res.text.indexOf('oauth/access') !== -1);
-            assert.equal(true, res.text.indexOf('oauth/success') !== -1);
-            assert.equal(true, res.text.indexOf('pages/oauth') !== -1);
-            assert.equal(true, res.text.indexOf('pay/callback') !== -1);
-            assert.equal(true, res.text.indexOf('pages/pay') !== -1);
-            done();
-          });
-      });
-      it('should be able to config host', function (done) {
-        var request = require('supertest');
-        var req = request(app)
-          .post('/' + id + '/config/host');
+          .post('/' + id + '/config/urls');
         req.cookies = cookies;
         req
           .send({
-            host: host
+            url: 'http://' + host + '/' + prefix
           })
           .expect(200)
           .end(function (error, res) {
             assert.equal(true, !error);
             assert.equal(true, res.text.indexOf(host) !== -1);
+            assert.equal(true, res.text.indexOf(prefix) !== -1);
             assert.equal(true, res.text.indexOf('auth/ack') !== -1);
             assert.equal(true, res.text.indexOf('jssdk/config') !== -1);
             assert.equal(true, res.text.indexOf('pages/jssdk') !== -1);
@@ -178,6 +160,30 @@ cmd.start(function (app) {
             done();
           });
       });
+
+      it('should be able to get urls', function (done) {
+        var request = require('supertest');
+        var req = request(app)
+          .get('/' + id + '/config/urls');
+        req.cookies = cookies;
+        req
+          .expect(200)
+          .end(function (error, res) {
+            assert.equal(true, !error);
+            assert.equal(true, res.text.indexOf(host) !== -1);
+            assert.equal(true, res.text.indexOf(prefix) !== -1);
+            assert.equal(true, res.text.indexOf('auth/ack') !== -1);
+            assert.equal(true, res.text.indexOf('jssdk/config') !== -1);
+            assert.equal(true, res.text.indexOf('pages/jssdk') !== -1);
+            assert.equal(true, res.text.indexOf('oauth/access') !== -1);
+            assert.equal(true, res.text.indexOf('oauth/success') !== -1);
+            assert.equal(true, res.text.indexOf('pages/oauth') !== -1);
+            assert.equal(true, res.text.indexOf('pay/callback') !== -1);
+            assert.equal(true, res.text.indexOf('pages/pay') !== -1);
+            done();
+          });
+      });
+
       it('should be able to config merchant', function (done) {
         var request = require('supertest');
         var req = request(app)
@@ -208,7 +214,7 @@ cmd.start(function (app) {
           });
       });
 
-      it('should be able to config certificate', function (done) {
+      it('should be able to get certificate before set', function (done) {
         var request = require('supertest');
         var req = request(app)
           .get('/' + id + '/config/certificate');
@@ -217,13 +223,11 @@ cmd.start(function (app) {
           .expect(200)
           .end(function (error, res) {
             assert.equal(true, !error);
-            assert.equal(true, res.text.indexOf(certificate.key) === -1);
             done();
           });
       });
 
-
-      it('should be able to config certificate', function (done) {
+      it('should be able to set certificate', function (done) {
         var request = require('supertest');
         var req = request(app)
           .post('/' + id + '/config/certificate');
@@ -235,13 +239,25 @@ cmd.start(function (app) {
           .attach('pfx', __dirname + '/assets/cert.p12')
           .expect(200)
           .end(function (error, res) {
+            console.log(res.text);
+            console.log(certificate);
+
+            console.log(!error);
+            var pfx = fs.readFileSync(__dirname + '/assets/cert.p12');
+            certificate.pfx = pfx.toString('base64');
+
+            console.log(res.text.indexOf(certificate.pfxKey) !== -1);
+            console.log(res.text.indexOf(certificate.pfx) !== -1);
+
+
             assert.equal(true, !error);
-            assert.equal(true, res.text.indexOf(certificate.key) !== -1);
+            assert.equal(true, res.text.indexOf(certificate.pfx) !== -1);
+            assert.equal(true, res.text.indexOf(certificate.pfxKey) !== -1);
             done();
           });
       });
 
-      it('should be able to config certificate', function (done) {
+      it('should be able to get certificate', function (done) {
         var request = require('supertest');
         var req = request(app)
           .get('/' + id + '/config/certificate');
@@ -249,8 +265,15 @@ cmd.start(function (app) {
         req
           .expect(200)
           .end(function (error, res) {
+            console.log(!error);
+            console.log(certificate);
+            console.log(res.text);
+            console.log(res.text.indexOf(certificate.pfxKey) !== -1);
+            console.log(res.text.indexOf(certificate.pfx) !== -1);
+
             assert.equal(true, !error);
-            assert.equal(true, res.text.indexOf(certificate.key) !== -1);
+            assert.equal(true, res.text.indexOf(certificate.pfxKey) !== -1);
+            assert.equal(true, res.text.indexOf(certificate.pfx) !== -1);
             assert.equal(true, res.text.indexOf('私钥值') !== -1);
             done();
           });
@@ -390,7 +413,6 @@ cmd.start(function (app) {
           });
       });
     });
-
 
     describe("session", function () {
       it('should get session by null request', function (done) {
