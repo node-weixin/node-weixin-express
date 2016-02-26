@@ -37,7 +37,7 @@
   [node-weixin交流论坛](http://forum.node-weixin.com/)
 
 * 官方网站  
-  [node-weixin](http://www.node-weixi.com/) 用于快速检索更新, 帮助，导航等
+  [node-weixin](http://www.node-weixin.com/) 用于快速检索更新, 帮助，导航等
   
 * 示例网址 
   [demo网址](http://express.ngrok.t1bao.com/) 输入appId，然后匹配成功就可以实现四种服务器功能
