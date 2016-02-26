@@ -85,11 +85,13 @@
 12. [node-weixin-message](https://github.com/node-weixin/node-weixin-message)
     微信消息API
 
-## Install
+## 安装
 
 ```sh
 $ npm install --g node-weixin-express
 ```
+
+> 注意： 使用0.2.x版本时确保npm 版本大于 3
 
 
 ## 使用说明
