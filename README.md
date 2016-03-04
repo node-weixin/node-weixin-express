@@ -1,7 +1,6 @@
-[![Beerpay](https://beerpay.io/node-weixin/node-weixin-express/badge.svg?style=flat-square)](https://beerpay.io/node-weixin/node-weixin-express)
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coveralls Status][coveralls-image]][coveralls-url]
 
-> 
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coveralls Status][coveralls-image]][coveralls-url] [![Beerpay](https://beerpay.io/node-weixin/node-weixin-express/badge.svg?style=flat-square)](https://beerpay.io/node-weixin/node-weixin-express)
+
 
 ## 功能说明
   node-weixin-express是一个基于nodejs为基础，以expressjs作为首选http服务器框架的微信公共账号服务器。
