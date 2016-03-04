@@ -1,3 +1,4 @@
+[![Beerpay](https://beerpay.io/node-weixin/node-weixin-express/badge.svg?style=flat-square)](https://beerpay.io/node-weixin/node-weixin-express)
 #  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coveralls Status][coveralls-image]][coveralls-url]
 
 > 
