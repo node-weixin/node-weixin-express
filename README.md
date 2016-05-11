@@ -30,9 +30,6 @@
 
 ## 问题、反馈与帮助
 
-* QQ互助群(即时求助)  
-  nodejs微信开发交流QQ群： 39287176
-
 * 论坛交流  
   [node-weixin交流论坛](http://forum.node-weixin.com/)
 
