@@ -23,7 +23,7 @@
 
 ## 重要子模块
   1. [node-weixin-api](https://github.com/node-weixin/node-weixin-api):提供所有基础的微信api
-  2. [node-weixin-router](https://github.com/node-weixin/node-weixin-api):提供所有的基于web框架的默认路由与回调机制
+  2. [node-weixin-router](https://github.com/node-weixin/node-weixin-router):提供所有的基于web框架的默认路由与回调机制
   3. [node-weixin-session](https://github.com/node-weixin/node-weixin-session):提供所有基于session的数据保存机制
   4. [node-weixin-settins](https://github.com/node-weixin/node-weixin-settings):提供所有基于appId的数据保存机制
 
