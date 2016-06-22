@@ -39,6 +39,11 @@
 * 示例网址 
   [demo网址](http://express.ngrok.t1bao.com/) 输入appId，然后匹配成功就可以实现四种服务器功能
 
+* 关注公共账号了解最新动态  
+  ![](http://res.cloudinary.com/dawjytvkn/image/upload/v1464858605/qrcode_for_gh_6f66da401fef_430_b1rr96.jpg)
+
+
+
 注:
  [node-weixin-express](https://github.com/node-weixin/node-weixin-express)是基于node-weixin-*的服务器端参考实现。
 
