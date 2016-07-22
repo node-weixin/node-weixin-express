@@ -3,7 +3,7 @@
 var assert = require('assert');
 var template = require('../lib/template');
 
-describe('node-weixin-express', function () {
+describe('template', function () {
   it('should init template!', function () {
     var obj = template({
       template: '../lib/views'
@@ -26,7 +26,6 @@ describe('node-weixin-express', function () {
   it('should fail to init template!', function () {
     var obj = template({
     });
-    console.log(obj);
     assert(obj);
   });
 });

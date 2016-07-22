@@ -1,0 +1,22 @@
+port: 2048
+host: localhost
+template: ''    #customer path for template
+server:
+    host: localhost
+    prefix: ''
+app:
+    id: ''
+    secret: ''
+    token: ''
+# message:
+#     aes: 'sdofsfd'
+# oauth:
+#     state: 'state'
+#     scope: '0'
+# merchant:
+#     id: '133'
+#     key: 'sdfsf'
+# certificate:
+#     pfxKey: 'sdfosofdf'
+#     pfx: 'sodfofosdf'
+#     path: ''
