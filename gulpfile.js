@@ -1,3 +1,4 @@
+'use strict';
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
@@ -7,19 +8,9 @@ var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
-var babel = require('gulp-babel');
-var del = require('del');
-var isparta = require('isparta');
-
-// Initialize the babel transpiler so ES2015 files gets compiled
-// when they're loaded
-require('babel-core/register');
-
-var frontends = ['lib/**/*.png', 'lib/**/*.html', 'lib/**/*.ejs', 'lib/**/*.css', 'lib/statics/**/*.js', 'lib/cli.js'];
-var backends = ['lib/**/*.js', '!lib/statics/**/*.js', '!lib/views/**/*.js', '!lib/cli.js'];
 
 gulp.task('static', function () {
-  return gulp.src(backends)
+  return gulp.src('**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -31,13 +22,12 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src(backends)
+  return gulp.src('lib/**/*.js')
+    .pipe(excludeGitignore())
     .pipe(istanbul({
-      includeUntested: true,
-      instrumenter: isparta.Instrumenter
+      includeUntested: true
     }))
-    .pipe(istanbul.hookRequire())
-    ;
+    .pipe(istanbul.hookRequire());
 });
 
 gulp.task('test', ['pre-test'], function (cb) {
@@ -56,36 +46,19 @@ gulp.task('test', ['pre-test'], function (cb) {
     });
 });
 
+gulp.task('watch', function () {
+  gulp.watch(['lib/**/*.js', 'test/**'], ['test']);
+});
+
 gulp.task('coveralls', ['test'], function () {
   if (!process.env.CI) {
     return;
   }
-
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
 
-gulp.task('babel', ['clean'], function () {
-  return gulp.src(backends)
-    .pipe(babel())
-    .pipe(gulp.dest('dist'));
+gulp.task('prepublish', ['nsp']);
+gulp.task('default', ['static', 'test', 'coveralls'], function () {
+  process.exit();
 });
-
-gulp.task('copy', function () {
-  return gulp.src(frontends)
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('run', ['babel', 'copy']);
-
-gulp.task('clean', function () {
-  return del('dist');
-});
-
-gulp.task('watch', function() {
-  gulp.watch(frontends, ['copy']);
-  gulp.watch(backends, ['nsp', 'babel', 'test', 'copy']);
-});
-
-gulp.task('prepublish', ['babel', 'copy']);
-gulp.task('default', ['copy', 'static', 'test', 'coveralls']);
