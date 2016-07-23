@@ -8,10 +8,10 @@ var path = require('path');
 describe('server', function () {
   it('should init server!', function (done) {
     var config = parser(path.resolve(__dirname, './fixtures/config.yaml'));
-    server(config, function (app, weixin) {
+    server(function (app, weixin) {
       assert(app);
       assert(weixin);
       done();
-    });
+    }, config, '/weixin/api');
   });
 });
