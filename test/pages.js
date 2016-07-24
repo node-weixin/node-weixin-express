@@ -12,6 +12,7 @@ var pages = require('../lib/pages');
 pages(app, config, settings, session);
 
 var request = require('supertest');
+console.log(config);
 
 describe('pages', function () {
   it('should get index', function (done) {
@@ -20,7 +21,7 @@ describe('pages', function () {
       .expect(200)
       .end(function (err, res) {
         assert(!err);
-        console.log(res.text);
+        console.log(res.text.indexOf('点击下面的按钮选择测试内容') !== -1);
         done();
       });
   });
@@ -30,7 +31,7 @@ describe('pages', function () {
       .expect(200)
       .end(function (err, res) {
         assert(!err);
-        console.log(res.text);
+        console.log(res.text.indexOf('JSSDK测试页') !== -1);
         done();
       });
   });
@@ -40,7 +41,7 @@ describe('pages', function () {
       .expect(200)
       .end(function (err, res) {
         assert(!err);
-        console.log(res.text);
+        console.log(res.text.indexOf('JSSDK测试页') !== -1);
         done();
       });
   });

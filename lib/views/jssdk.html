@@ -14,21 +14,23 @@
 <script>
   $(document).ready(function() {
     var url = "/weixin/api/jssdk/config";
-    alert(location.origin + location.pathname);
+    var weixinUrl = location.href.split('#')[0];
+    // alert(weixinUrl);
+    // alert(JSON.stringify(location));
     $.ajax({
       url: url, //这个地址是服务器配置JSSDK的地址
       data: {
-        url: location.origin + location.pathname
+        url: weixinUrl
           //这个地址是发生jssdk调用的url地址
       }
     }).success(function(json) {
-      alert(JSON.stringify(json.data));
+      // alert(JSON.stringify(json.data));
       var data = json.data;
       var config = {};
       for (var k in json.data) {
         config[k] = json.data[k];
       }
-
+      // config.debug = true;
       config.jsApiList = [
         'checkJsApi',
         'scanQRCode'
