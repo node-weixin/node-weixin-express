@@ -16,53 +16,19 @@
   {% block body %}
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <% include sidebar.ejs %>
-      </div>
-      <div class="col-md-8">
-        <h3>请扫描下面的二维码进入相应的手机界面，或者直接点击左边链接进入</h3>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="thumbnail">
-              <img src="/<%= id %>/qrcode/jssdk" alt="JSSDK">
-
-              <div class="caption">
-                <h3>JSSDK 访问二维码</h3>
-
-                <p></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-
-            <div class="thumbnail">
-              <img src="/<%= id %>/qrcode/oauth" alt="JSSDK">
-
-              <div class="caption">
-                <h3>OAuth 访问二维码</h3>
-
-                <p></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-
-            <div class="thumbnail">
-              <img src="/<%= id %>/qrcode/pay" alt="JSSDK">
-
-              <div class="caption">
-                <h3>微信支付访问二维码</h3>
-
-                <p></p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col-xs-12">
+        <h2>欢迎使用</h2>
+        <h3 class="text-center text-danger">node-weixin-express</h3>
+        <h2 class="text-right">组件</h2>
+        <h3>点击下面的按钮选择测试内容</h3>
+        <a class="btn btn-success btn-block" href="/jssdk">JSSDK</a>
+        <a class="btn btn-success btn-block" href="/oauth">OAuth</a>
+        <a class="btn btn-success btn-block" href="/pay">Pay</a>
       </div>
     </div>
   </div>
-  {% endblock %} {% block scripts %}
+  {% endblock %}
+  {% block scripts %}
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
