@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  {% block header %}
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width">
+  <title>Node Weixin</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  {% endblock %}
+</head>
+
+<body>
+  {% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>欢迎使用</h2>
+        <h3 class="text-center text-danger">node-weixin-express</h3>
+        <h2 class="text-right">组件</h2>
+        <h3>点击下面的按钮选择测试内容</h3>
+        <a class="btn btn-success btn-block" href="/jssdk">JSSDK</a>
+        <a class="btn btn-success btn-block" href="/oauth">OAuth</a>
+        <a class="btn btn-success btn-block" href="/pay">Pay</a>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  {% block scripts %}
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+</body>
+
+</html>

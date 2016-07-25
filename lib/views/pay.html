@@ -1,0 +1,55 @@
+{% extends 'index.html' %} {% block body %}
+<div>
+  <div class="container">
+    <h1>JSSDK测试页</h1>
+
+    <h2><a class="btn btn-success QRScan">测试扫码</a></h2>
+
+  </div>
+</div>
+{% endblock %}
+<!-- -->
+{% block scripts %} {{ super() }}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+  //从服务器获取配置好的数据
+  function wxPayConfig(no, fee, desc, cb) {
+    $.ajax({
+      url: '/weixin/api/pay/init',
+      data: {
+        no: no,
+        fee: fee,
+        desc: desc
+      }
+    }).success(function(config) {
+      cb(config);
+    });
+  }
+
+  //调用微信JS api 支付
+  function wxPay(config) {
+    WeixinJSBridge.invoke(
+      'getBrandWCPayRequest',
+      config,
+      function(data) {
+        alert('wxPay');
+        alert(JSON.stringify(data));
+        WeixinJSBridge.log(data.err_msg);
+      }
+    );
+  }
+
+  function onBridgeReady() {
+    alert("on bridge Ready");
+    wxPayConfig(new Date().getTime(), 1, '测试支付', function(config) {
+      alert(JSON.stringify(config));
+      wxPay(config.data);
+    });
+  }
+  $(document).ready(function() {
+    alert("on document Ready");
+    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+  });
+</script>
+{% endblock %}

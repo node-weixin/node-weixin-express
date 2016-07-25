@@ -1,63 +1,31 @@
-var path = require('path');
-var parser = require('../lib/parser');
-var settings = require('../lib/mySettings');
-var assert = require('assert');
+'use strict';
 
-var async = require('async');
+var assert = require('assert');
+var parser = require('../lib/parser');
+var path = require('path');
 
 describe('parser', function () {
-
-
-  it('shoulde parse config file', function(done) {
-    parser(settings, path.resolve('./test/assets/config.json'), function(id) {
-      assert.equal(true, id !== false);
-      async.series([(cb) => {
-        settings.get(id, 'app', function(app) {
-          assert.equal(true, app !== null);
-          cb();
-        });
-      }, (cb) => {
-        settings.get(id, 'oauth', function(oauth) {
-          assert.equal(true, oauth !== null);
-          cb();
-        });
-      }, (cb) => {
-        settings.get(id, 'merchant', function(merchant) {
-          assert.equal(true, merchant !== null);
-          cb();
-        });
-      }, (cb) => {
-        settings.get(id, 'certificate', function(certificate) {
-          assert.equal(true, certificate !== null);
-          cb();
-        });
-      }, (cb) => {
-        settings.get(id, 'urls', function(urls) {
-          assert.equal(true, urls !== null);
-          cb();
-        });
-      }, (cb) => {
-        settings.get(id, 'message', function(message) {
-          assert.equal(true, message !== null);
-          cb();
-        });
-      }], function() {
-        done();
-      });
-    });
+  it('should init template!', function () {
+    var obj = parser(path.resolve(__dirname, './fixtures/config.yaml'));
+    assert(obj);
+  });
+  it('should init template!', function () {
+    var failed = false;
+    try {
+      parser(path.resolve(__dirname, './fixtures/config.1.yaml'));
+    } catch (e) {
+      failed = true;
+    }
+    assert(failed);
   });
 
-  it('shoulde be error parsing config file', function(done) {
-    parser(settings, path.resolve('./test/assets/config-error.json'), function(id) {
-      assert.equal(true, id === false);
-      done();
-    });
-  });
-
-  it('shoulde be error parsing none json file', function(done) {
-    parser(settings, path.resolve('./test/assets/cert.p12'), function(id) {
-      assert.equal(true, id === false);
-      done();
-    });
+  it('should throw exception!', function () {
+    var failed = false;
+    try {
+      parser(path.resolve(__dirname, './fixtures/config.2.yaml'));
+    } catch (e) {
+      failed = true;
+    }
+    assert(failed);
   });
 });

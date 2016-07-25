@@ -1,5 +1,4 @@
-
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coveralls Status][coveralls-image]][coveralls-url] [![Beerpay](https://beerpay.io/node-weixin/node-weixin-express/badge.svg?style=flat-square)](https://beerpay.io/node-weixin/node-weixin-express)
+# node-weixin-express [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url][![Beerpay](https://beerpay.io/node-weixin/node-weixin-express/badge.svg?style=flat-square)](https://beerpay.io/node-weixin/node-weixin-express)
 
 
 ## 功能说明
@@ -13,7 +12,7 @@
   2. 基本的微信功能：
     - 验证服务器
     - OAuth 验证API
-    - 微信支付API
+    // - 微信支付API
     - 消息接口API
   3. 可以任意基于express的框架沟通协作(基本完成)
   4. 模块化机制采用Unix开发哲学：KISS
@@ -22,29 +21,31 @@
   
 
 ## 重要子模块
-  1. [node-weixin-api](https://github.com/node-weixin/node-weixin-api):提供所有基础的微信api
-  2. [node-weixin-router](https://github.com/node-weixin/node-weixin-router):提供所有的基于web框架的默认路由与回调机制
-  3. [node-weixin-session](https://github.com/node-weixin/node-weixin-session):提供所有基于session的数据保存机制
-  4. [node-weixin-settings](https://github.com/node-weixin/node-weixin-settings):提供所有基于appId的数据保存机制
+  1. [node-weixin-api](https://github.com/node-weixin/node-weixin-api):
+    提供所有基础的微信api
+  2. [node-weixin-router](https://github.com/node-weixin/node-weixin-router):
+    提供所有的基于web框架的默认路由与回调机制
+  3. [node-weixin-session](https://github.com/node-weixin/node-weixin-session):
+    提供所有基于用户登录的session数据的存储机制，通过修改get/set/all来实现自定义化
+  4. [node-weixin-settings](https://github.com/node-weixin/node-weixin-settings):
+    提供所有基于微信的app.id的数据存储机制，通过修改get/set/all来实现自定义化
 
 
 ## 问题、反馈与帮助
 
-* 论坛交流  
+- 论坛交流  
   [node-weixin交流论坛](http://forum.node-weixin.com/)
 
-* 官方网站  
+- 官方网站  
   [node-weixin](http://www.node-weixin.com/) 用于快速检索更新, 帮助，导航等
-  
-* 示例网址 
-  [demo网址](http://express.ngrok.t1bao.com/) 输入appId，然后匹配成功就可以实现四种服务器功能
 
-* 关注公共账号了解最新动态  
+- 关注公共账号了解最新动态  
   ![](http://res.cloudinary.com/dawjytvkn/image/upload/v1464858605/qrcode_for_gh_6f66da401fef_430_b1rr96.jpg)
 
 
 
-注:
+## node-weixin
+
  [node-weixin-express](https://github.com/node-weixin/node-weixin-express)是基于node-weixin-*的服务器端参考实现。
 
  [node-weixin-api](https://github.com/node-weixin/node-weixin-api)是基于node-weixin-*的API接口SDK。
@@ -93,69 +94,82 @@
 $ npm install --g node-weixin-express
 ```
 
-> 注意： 使用0.2.x版本时确保npm 版本大于 3
-
-
-## 使用说明
+### 说明
 
 安装后在命令行会多出一个命令:
 
 ```sh
 weixin
 ```
-注意：这里的命令名是weixin，不是node-weixin-express
 
-###查看命令
+> 注意：这里的命令名是weixin，不是node-weixin-express
+
+## 查看命令
 
 ```sh
 $ weixin --help
 ```
 
-不需要再写代码，可以直接通过命令执行。
+## 运行
 
-端口port默认是3333,需要配置HTTP代理才能更好的工作
-  >如果没有代理服务器，请将port指定为80，以防微信验证无法通过。
+```
+$ weixin [--yaml] a.yaml
+```
+后面接一个描述性的yaml文件
 
+> 不需要再写代码，可以直接通过命令执行。
 
-###参数说明：
+## yaml文件格式
 
-```sh
---port port         //服务器侦听的端口
+```yaml
+### ----必填项---- ###
+port: 2048              # 服务器端口号
+host: localhost         # 本地的IP或者主机地址
+template: ''            # 可以替换的模板的位置，放入自己的模板，格式是nunjunck
+# 服务器配置
+server:
+    host: localhost     # 远程的服务器名， 需要与JSSDK的授权域名一致
+    prefix: '/api'      # 格式是'/xxx'，必须带'/'
+# 微信公共号的基本配置信息
+app:
+    id: 'xxx'           # 必须换成自己的
+    secret: 'xxx'       # 必须换成自己的
+    token: 'xxx'
+### ----结束---- ###
+
+# 加密消息
+ message:           
+     aes: 'sdofsfd'
+# Oauth 相关
+ oauth:
+     state: 'state'
+     scope: '0'
+# 支付相关，暂时不开放
+# merchant:
+#     id: '133'
+#     key: 'sdfsf'
+# certificate:
+#     pfxKey: 'sdfosofdf'
+#     pfx: 'sodfofosdf'
+#     path: ''
 ```
 
-###运行说明
+## 模板说明
 
-普通命令运行
-
-```sh
-weixin --port port
-```
-
-作为永久服务器运行
-```sh
-forever start $(which weixin) --port port
-```
-## 已经支持服务器类型
-
-1. 作为微信验证服务器
-
-2. 作为oauth服务器
-
-3. 作为JSSDK服务器
-
-4. 作为支付服务器
-
-详情参考示例网站：
-http://express.ngrok.t1bao.com/
+目前支持的模板是nunjucks：https://mozilla.github.io/nunjucks/
+可能是目前javascript下最完善的模板。
+暂时不支持其它的模板。
 
 
-## 交流论坛
+## 特色
 
+1. 通过一个命令就可以对接好公共帐号的主要功能
+2. 可以自定义模板，方便前端测试开发
+3. 配合ngrok, localtunnel等软件将会更加方便
 
 ## License
 
-MIT © [node-weixin](http://www.node-weixin.com)
-
+Apache-2.0 © [node-weixin](www.node-weixin.com)
 
 [npm-image]: https://badge.fury.io/js/node-weixin-express.svg
 [npm-url]: https://npmjs.org/package/node-weixin-express
@@ -163,5 +177,5 @@ MIT © [node-weixin](http://www.node-weixin.com)
 [travis-url]: https://travis-ci.org/node-weixin/node-weixin-express
 [daviddm-image]: https://david-dm.org/node-weixin/node-weixin-express.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/node-weixin/node-weixin-express
-[coveralls-image]: https://coveralls.io/repos/node-weixin/node-weixin-express/badge.svg?branch=master&service=github
-[coveralls-url]: https://coveralls.io/github/node-weixin/node-weixin-express?branch=master
+[coveralls-image]: https://coveralls.io/repos/node-weixin/node-weixin-express/badge.svg
+[coveralls-url]: https://coveralls.io/r/node-weixin/node-weixin-express
