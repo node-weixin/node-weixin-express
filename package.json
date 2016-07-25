@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.0.0",
+  "version": "0.3.0",
   "description": "A Node Weixin Server Implementation",
   "homepage": "",
   "author": {
@@ -45,6 +45,7 @@
   "dependencies": {
     "async": "^2.0.0",
     "express": "^4.14.0",
+    "express-session": "^1.14.0",
     "meow": "^3.7.0",
     "node-form-validator": "^1.0.2",
     "node-weixin-router": "^0.5.4",
