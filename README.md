@@ -135,15 +135,16 @@ app:
     id: 'xxx'           # 必须换成自己的
     secret: 'xxx'       # 必须换成自己的
     token: 'xxx'
+# Oauth 相关
+ oauth:
+     state: 'state'
+     scope: '0'
 ### ----结束---- ###
 
 # 加密消息
  message:           
      aes: 'sdofsfd'
-# Oauth 相关
- oauth:
-     state: 'state'
-     scope: '0'
+
 # 支付相关，暂时不开放
 # merchant:
 #     id: '133'
