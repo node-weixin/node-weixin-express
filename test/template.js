@@ -6,7 +6,7 @@ var template = require('../lib/template');
 describe('template', function () {
   it('should init template!', function () {
     var obj = template({
-      template: '../lib/views'
+      template: './lib/views'
     });
     assert(obj);
   });
@@ -15,7 +15,7 @@ describe('template', function () {
     var failed = false;
     try {
       template({
-        template: '../lib/abc'
+        template: './lib/abc'
       });
     } catch (e) {
       failed = true;
