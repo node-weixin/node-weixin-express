@@ -18,4 +18,14 @@ describe('parser', function () {
     }
     assert(failed);
   });
+
+  it('should throw exception!', function () {
+    var failed = false;
+    try {
+      parser(path.resolve(__dirname, './fixtures/config.2.yaml'));
+    } catch (e) {
+      failed = true;
+    }
+    assert(failed);
+  });
 });

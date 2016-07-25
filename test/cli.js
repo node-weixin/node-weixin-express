@@ -37,9 +37,7 @@ describe('cli', function () {
     try {
       require('../lib/cli');
     } catch (e) {
-      console.log(e);
       assert(e.message === 'YAML 文件不存在！');
-
       catched = true;
     }
     assert(catched);
@@ -53,5 +51,17 @@ describe('cli', function () {
   });
   it('should test onAuthMessage', function () {
     cli.auth.message();
+  });
+
+  it('should test onOauthAccess', function () {
+    cli.oauth.access();
+  });
+  it('should test onOAuthSuccess', function (done) {
+    cli.oauth.success({}, {
+      send: function (html) {
+        assert(html.indexOf('尚未指定OAuth跳转URL') !== -1);
+        done();
+      }
+    });
   });
 });
