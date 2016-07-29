@@ -12,6 +12,6 @@ describe('server', function () {
       assert(app);
       assert(weixin);
       done();
-    }, config, '/weixin/api');
+    }, config.weixin, '/weixin/api');
   });
 });

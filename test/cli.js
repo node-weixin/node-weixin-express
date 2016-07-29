@@ -47,10 +47,14 @@ describe('cli', function () {
   });
 
   it('should test onAuthEvent', function () {
-    cli.auth.event();
+    cli.auth.event({
+      Event: 'subscribe'
+    });
   });
   it('should test onAuthMessage', function () {
-    cli.auth.message();
+    cli.auth.message({
+      MsgType: 'event'
+    });
   });
 
   it('should test onOauthAccess', function () {

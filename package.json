@@ -44,8 +44,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "async": "^2.0.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "localtunnel": "^1.8.1",
     "meow": "^3.7.0",
     "node-form-validator": "^1.0.2",
     "node-weixin-router": "^0.5.4",
@@ -54,6 +56,7 @@
     "nunjucks": "^2.4.2",
     "skipper": "^0.6.2",
     "supertest": "^1.2.0",
+    "waterline": "^0.12.2",
     "yamljs": "^0.2.8"
   },
   "bin": {
