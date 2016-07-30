@@ -20,7 +20,7 @@ describe('pages', function () {
       .expect(200)
       .end(function (err, res) {
         assert(!err);
-        assert(res.text.indexOf('点击下面的按钮选择测试内容') !== -1);
+        assert(res.text.indexOf('Node-Weixin') !== -1);
         done();
       });
   });

@@ -13,18 +13,18 @@ describe('cli', function () {
   ];
   var cli = require('../lib/cli');
   var realPath = path.resolve('./lib/cli') + '.js';
-  it('should throw error', function () {
-    delete require.cache[realPath];
-    var catched = false;
-    process.argv = [];
-    try {
-      require('../lib/cli');
-    } catch (e) {
-      assert(e.message === 'YAML 文件未指定！');
-      catched = true;
-    }
-    assert(catched);
-  });
+  // it('should throw error', function () {
+  //   delete require.cache[realPath];
+  //   var catched = false;
+  //   process.argv = [];
+  //   try {
+  //     require('../lib/cli');
+  //   } catch (e) {
+  //     assert(e.message === 'YAML 文件未指定！');
+  //     catched = true;
+  //   }
+  //   assert(catched);
+  // });
   it('should test cli', function () {
     delete require.cache[realPath];
 
