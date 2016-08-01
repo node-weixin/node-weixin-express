@@ -7,7 +7,15 @@ describe('auth event', function () {
   it('should handle events', function () {
     for (var k in event) {
       if (typeof k === 'string') {
-        event[k]({});
+        event[k]({}, {
+          create: function (message) {
+            return {
+              then: function (cb) {
+                cb(message);
+              }
+            };
+          }
+        });
       }
     }
   });

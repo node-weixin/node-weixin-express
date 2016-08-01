@@ -51,7 +51,7 @@
     "localtunnel": "^1.8.1",
     "meow": "^3.7.0",
     "node-form-validator": "^1.1.0",
-    "node-weixin-router": "^0.5.4",
+    "node-weixin-router": "^0.5.5",
     "node-weixin-session": "0.0.2",
     "node-weixin-settings": "^0.2.1",
     "nunjucks": "^2.4.2",
