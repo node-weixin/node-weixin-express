@@ -5,18 +5,14 @@ var template = require('../lib/template');
 
 describe('template', function () {
   it('should init template!', function () {
-    var obj = template({
-      template: './lib/views'
-    });
+    var obj = template('./lib/views');
     assert(obj);
   });
 
   it('should fail to init template!', function () {
     var failed = false;
     try {
-      template({
-        template: './lib/abc'
-      });
+      template('./lib/abc');
     } catch (e) {
       failed = true;
     }
@@ -24,8 +20,7 @@ describe('template', function () {
   });
 
   it('should fail to init template!', function () {
-    var obj = template({
-    });
+    var obj = template();
     assert(obj);
   });
 });

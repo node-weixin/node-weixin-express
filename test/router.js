@@ -8,7 +8,7 @@ var parser = require('../lib/parser');
 describe('router', function () {
   var config = parser(path.resolve(__dirname, './fixtures/config.yaml'));
   it('should get init', function (done) {
-    router(express(), config);
+    router(express(), config.template);
     done();
   });
   it('should get index', function (done) {

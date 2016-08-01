@@ -1,7 +1,7 @@
 'use strict';
 
 // var assert = require('assert');
-var event = require('../../lib/auth/event');
+var event = require('../../lib/weixin/auth/event');
 
 describe('auth event', function () {
   it('should handle events', function () {

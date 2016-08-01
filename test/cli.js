@@ -46,27 +46,4 @@ describe('cli', function () {
   it('should test cli', function () {
     cli.callback(express(), weixin);
   });
-
-  it('should test onAuthEvent', function () {
-    cli.auth.event({
-      Event: 'subscribe'
-    });
-  });
-  it('should test onAuthMessage', function () {
-    cli.auth.message({
-      MsgType: 'event'
-    });
-  });
-
-  it('should test onOauthAccess', function () {
-    cli.oauth.access();
-  });
-  it('should test onOAuthSuccess', function (done) {
-    cli.oauth.success({}, {
-      send: function (html) {
-        assert(html.indexOf('尚未指定OAuth跳转URL') !== -1);
-        done();
-      }
-    });
-  });
 });
