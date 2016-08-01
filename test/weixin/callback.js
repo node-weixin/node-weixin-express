@@ -8,7 +8,10 @@ describe('weixin callback', function () {
     callback.init({
       template: ''
     },
-      null,
+      {
+        event: {},
+        message: {}
+      },
       {
         onAuthEvent: function () {
 
