@@ -1,8 +1,6 @@
 'use strict';
 var assert = require('assert');
 var path = require('path');
-var express = require('express');
-var weixin = require('node-weixin-router');
 
 describe('cli', function () {
   var file = path.resolve('./test/fixtures/config.yaml');
@@ -11,7 +9,6 @@ describe('cli', function () {
     'dfdf',
     file
   ];
-  var cli = require('../lib/cli');
   var realPath = path.resolve('./lib/cli') + '.js';
   it('should throw error', function () {
     delete require.cache[realPath];
@@ -43,7 +40,25 @@ describe('cli', function () {
     }
     assert(catched);
   });
-  it('should test cli', function () {
-    cli.callback(express(), weixin);
+
+  it('should init!', function (done) {
+    delete require.cache[realPath];
+    process.argv = [
+      'node',
+      'dfdf',
+      file
+    ];
+    var cli = require('../lib/cli');
+    cli.onSuccess = function () {
+      console.log('init end');
+      var app = require('../lib/');
+      app.callback();
+
+      assert(app._config);
+      assert(app._app);
+      assert(app._weixin);
+      assert(app._models);
+      done();
+    };
   });
 });

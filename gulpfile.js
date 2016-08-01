@@ -35,7 +35,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 
   gulp.src('test/**/*.js')
     .pipe(plumber())
-    .pipe(mocha({reporter: 'spec'}))
+    .pipe(mocha({reporter: 'spec', timeout: 10000}))
     .on('error', function (err) {
       mochaErr = err;
       throw err;
@@ -58,7 +58,8 @@ gulp.task('coveralls', ['test'], function () {
     .pipe(coveralls());
 });
 
-gulp.task('prepublish', ['nsp']);
+// gulp.task('prepublish', ['nsp']);
+gulp.task('prepublish');
 gulp.task('default', ['static', 'test', 'coveralls'], function () {
   process.exit();
 });

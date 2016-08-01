@@ -8,9 +8,15 @@ describe('localtunnel', function () {
     lt._tunnel.close();
     // assert(false, 'we expected this package author to add actual unit tests.');
   });
-  it('should test connected!', function () {
+  it('should test connected!', function (done) {
+    var called = false;
     var func = lt._tunnel.connected({
       open: true
+    }, function () {
+      if (!called) {
+        called = true;
+        done();
+      }
     });
     func(false, {
       url: 'sodfosfsdf'
