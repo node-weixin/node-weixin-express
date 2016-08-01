@@ -44,6 +44,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "async": "^2.0.0",
+    "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
