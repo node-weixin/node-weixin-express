@@ -9,8 +9,24 @@ describe('weixin callback', function () {
       template: ''
     },
       {
-        event: {},
-        message: {}
+        event: {
+          create: function (message) {
+            return {
+              then: function (cb) {
+                cb(message);
+              }
+            };
+          }
+        },
+        message: {
+          create: function (message) {
+            return {
+              then: function (cb) {
+                cb(message);
+              }
+            };
+          }
+        }
       },
       {
         onAuthEvent: function () {
