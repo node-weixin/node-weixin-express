@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A Node Weixin Server Implementation",
   "homepage": "",
   "author": {
@@ -51,13 +51,13 @@
     "localtunnel": "^1.8.1",
     "meow": "^3.7.0",
     "node-form-validator": "^1.1.0",
-    "node-weixin-router": "^0.5.5",
+    "node-weixin-router": "^0.5.8",
     "node-weixin-session": "0.0.2",
     "node-weixin-settings": "^0.2.1",
     "nunjucks": "^2.4.2",
     "open": "0.0.5",
     "sails-disk": "^0.10.10",
-    "skipper": "^0.6.2",
+    "skipper": "^0.6.3",
     "supertest": "^1.2.0",
     "waterline": "^0.12.2",
     "yamljs": "^0.2.8"

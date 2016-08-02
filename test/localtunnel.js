@@ -34,4 +34,10 @@ describe('localtunnel', function () {
     func(true);
     func('localtunnel.me');
   });
+
+  it('should test none stopped !', function () {
+    lt._tunnel._status = 'starting';
+    lt._tunnel.start();
+    lt._tunnel.restart();
+  });
 });

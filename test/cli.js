@@ -17,7 +17,6 @@ describe('cli', function () {
     try {
       require('../lib/cli');
     } catch (e) {
-      console.log(e);
       assert(e.message === 'Not validate key weixin');
       catched = true;
     }
@@ -50,7 +49,6 @@ describe('cli', function () {
     ];
     var cli = require('../lib/cli');
     cli.onSuccess = function () {
-      console.log('init end');
       var app = require('../lib/');
       app.callback();
 
