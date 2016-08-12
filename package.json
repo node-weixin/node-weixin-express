@@ -18,6 +18,7 @@
     "wechat"
   ],
   "devDependencies": {
+    "supertest": "^1.2.0",
     "eslint": "^2.1.0",
     "eslint-config-xo-space": "^0.13.0",
     "gulp": "^3.9.0",
@@ -57,8 +58,7 @@
     "nunjucks": "^2.4.2",
     "open": "0.0.5",
     "sails-disk": "^0.10.10",
-    "skipper": "^0.6.3",
-    "supertest": "^1.2.0",
+    "skipper": "^0.6.4",
     "waterline": "^0.12.2",
     "yamljs": "^0.2.8"
   },
