@@ -126,33 +126,34 @@ $ weixin [--yaml] a.yaml
 port: 2048              # 服务器端口号
 host: localhost         # 本地的IP或者主机地址
 template: ''            # 可以替换的模板的位置，放入自己的模板，格式是nunjunck
-# 服务器配置
-server:
-    host: localhost     # 远程的服务器名， 需要与JSSDK的授权域名一致
-    prefix: '/api'      # 格式是'/xxx'，必须带'/'
-# 微信公共号的基本配置信息
-app:
-    id: 'xxx'           # 必须换成自己的
-    secret: 'xxx'       # 必须换成自己的
-    token: 'xxx'
-# Oauth 相关
- oauth:
-     state: 'state'
-     scope: '0'
-### ----结束---- ###
+weixin:
+  # 微信服务器配置
+  server:
+      host: localhost     # 远程的服务器名， 需要与JSSDK的授权域名一致
+      prefix: '/api'      # 格式是'/xxx'，必须带'/'
+  # 微信公共号的基本配置信息
+  app:
+      id: 'xxx'           # 必须换成自己的
+      secret: 'xxx'       # 必须换成自己的
+      token: 'xxx'
+  # Oauth 相关
+  oauth:
+      state: 'state'
+      scope: '0'
+  ### ----结束---- ###
 
-# 加密消息
- message:           
-     aes: 'sdofsfd'
+  # 加密消息
+  message:           
+      aes: 'sdofsfd'
 
-# 支付相关，暂时不开放
-# merchant:
-#     id: '133'
-#     key: 'sdfsf'
-# certificate:
-#     pfxKey: 'sdfosofdf'
-#     pfx: 'sodfofosdf'
-#     path: ''
+  # 支付相关，暂时不开放
+  # merchant:
+  #     id: '133'
+  #     key: 'sdfsf'
+  # certificate:
+  #     pfxKey: 'sdfosofdf'
+  #     pfx: 'sodfofosdf'
+  #     path: ''
 ```
 
 ## 模板说明
