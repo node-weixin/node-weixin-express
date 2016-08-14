@@ -160,13 +160,21 @@ weixin:
 ## URLs
 
 服务器校验地址
+```
 'http://' + 域名 + '/' + 前缀 + '/auth/ack
+```
 JSSDK配置请求地址
+```
 'http://' + 域名 + '/' + 前缀 + '/jssdk/config
+```
 Oauth访问地址
+```
 'http://' + 域名 + '/' + 前缀 + '/oauth/access
+```
 支付回调地址
+```
 'http://' + 域名 + '/' + 前缀 + '/pay/callback
+```
 
 ## 模板说明
 
