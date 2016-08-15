@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-express",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A Node Weixin Server Implementation",
   "homepage": "",
   "author": {
