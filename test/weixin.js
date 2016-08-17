@@ -6,14 +6,19 @@ var weixin = require('../lib/weixin');
 
 describe('weixin', function () {
   var config = {
-    app: {
-      id: 'sdfsfd'
+    weixin: {
+      app: {
+        id: 'sdfsfd'
+      }
+    },
+    server: {
+      prefix: '/weixin/api'
     }
   };
   it('should enable weixin getId!', function () {
-    var obj = weixin.getId(config);
+    var obj = weixin.getId(config.weixin);
     obj({}, function (id) {
-      assert(id === config.app.id);
+      assert(id === config.weixin.app.id);
     });
   });
 

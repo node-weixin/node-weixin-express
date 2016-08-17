@@ -20,6 +20,7 @@ describe('pages', function () {
       .expect(200)
       .end(function (err, res) {
         assert(!err);
+        console.log(res.text);
         assert(res.text.indexOf('Node-Weixin') !== -1);
         done();
       });

@@ -5,7 +5,7 @@ var template = require('../lib/template');
 
 describe('template', function () {
   it('should init template!', function () {
-    var obj = template('./lib/views');
+    var obj = template('./lib/views', 'a.html');
     assert(obj);
   });
 
