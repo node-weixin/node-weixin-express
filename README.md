@@ -38,8 +38,11 @@
 
 - 官方网站  
   [node-weixin](http://www.node-weixin.com/) 用于快速检索更新, 帮助，导航等
-
-- 关注公共账号了解最新动态  
+  
+- 官方QQ群
+  39287176
+  
+- 关注公共账号了解最新动态  
   ![](http://res.cloudinary.com/dawjytvkn/image/upload/v1464858605/qrcode_for_gh_6f66da401fef_430_b1rr96.jpg)
 
 
